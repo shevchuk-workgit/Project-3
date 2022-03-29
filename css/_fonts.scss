@@ -1,0 +1,36 @@
+@mixin fonts {
+  font-family: 'Roboto', sans-serif;
+  font-size:20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.message_font_header{
+  @include fonts;
+  font-size:30px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.message_font_text{
+  @include fonts;
+}
+
+.message_font_dialog{
+  @include fonts;
+  font-size:16px;
+  margin-top: 50px;
+  font-weight: 200;
+}
+
+.message_button_font{
+  @include fonts;
+  font-size: 16px;
+  margin-bottom: 0;
+
+}
+
+.slider_page_font{
+  @include fonts;
+  font-size: 16px;
+}
