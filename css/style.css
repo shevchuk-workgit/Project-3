@@ -146,6 +146,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   width: 260px;
+  overflow: hidden;
   margin: 0 5px;
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px 20px;

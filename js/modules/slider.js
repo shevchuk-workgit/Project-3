@@ -1,13 +1,14 @@
 
 'use strict'
 
+import {structureWindowPage} from './window_contents'
 
 //slider
 let currentSlide;
+let sliderImage;
 
-function slider(){
+function slider(currentWindow, quantitySlider){
   let sliderTimer = true;
-  let quantitySlider = 5; //quantity pictures in slider
   let nextSlide = currentSlide+1;
   let prevSlide = currentSlide-1;
   let firstSliderImage;
@@ -31,22 +32,32 @@ function slider(){
         nextSlide=currentSlide+1
       };
 
-    const image = document.createElement('img');
-    image.classList.add('slider_image');
-    image.setAttribute('src',`/img/background/background-${nextSlide}.jpg`);
-    image.setAttribute('alt',`background-image-${nextSlide}`);
+      switch(currentWindow){
+        case 1: 
+        changeSlideBackground(nextSlide);
+        changeBackground();
+        break;
+        case 2: 
+        changeSlidePageStyle(nextSlide);
+        break;
+      }
+      
+      // const image = document.createElement('img');
+      // image.classList.add('slider_image');
+      // image.setAttribute('src',`/img/background/background-${nextSlide}.jpg`);
+      // image.setAttribute('alt',`background-image-${nextSlide}`);
 
-    firstSliderImage = document.querySelector('.slider_image:first-child');  
-    firstSliderImage.remove();
+      firstSliderImage = document.querySelector('.slider_image:first-child');  
+      firstSliderImage.remove();
 
-    document.querySelector('.slider_images_container').append(image);
+      document.querySelector('.slider_images_container').append(sliderImage);
 
-    console.log(`currentSlide ${currentSlide}`);
+      console.log(`currentSlide ${currentSlide}`);
 
-    changeBackground();
+      
 
-    sliderTimer = false;
-    setTimeout(()=>sliderTimer=true,500);
+      sliderTimer = false;
+      setTimeout(()=>sliderTimer=true,500);
     };
   });
 
@@ -66,19 +77,26 @@ function slider(){
         prevSlide = currentSlide-1
       }
 
-      const image = document.createElement('img');
-      image.classList.add('slider_image');
-      image.setAttribute('src',`/img/background/background-${prevSlide}.jpg`);
-      image.setAttribute('alt',`background-image-${prevSlide}`);
+      switch(currentWindow){
+        case 1:
+          changeSlideBackground(prevSlide);
+          changeBackground();
+        break;
+        case 2:
+          changeSlidePageStyle(prevSlide);
+        break;
+      }
+      // const image = document.createElement('img');
+      // image.classList.add('slider_image');
+      // image.setAttribute('src',`/img/background/background-${prevSlide}.jpg`);
+      // image.setAttribute('alt',`background-image-${prevSlide}`);
 
       lastSliderImage = document.querySelector('.slider_image:last-child');
       lastSliderImage.remove();
 
-      document.querySelector('.slider_images_container').prepend(image);
+      document.querySelector('.slider_images_container').prepend(sliderImage);
 
       console.log(`currentSlide ${currentSlide}`);
-
-      changeBackground();
 
       sliderTimer = false;
       setTimeout(()=>sliderTimer=true,500);
@@ -87,9 +105,15 @@ function slider(){
 }
 
 //change background
+function changeSlideBackground(direction){
+  sliderImage = document.createElement('img');
+  sliderImage.classList.add('slider_image');
+  sliderImage.setAttribute('src',`/img/background/background-${direction}.jpg`);
+  sliderImage.setAttribute('alt',`background-image-${direction}`);
+}
+
 function changeBackground (){
   let backgroundContainer = document.querySelector('.main_container');
-
 
   backgroundContainer.style.backgroundImage= `url(/img/background/background-${currentSlide}.jpg)`;
   backgroundContainer.style.backgroundAttachment='fixed';
@@ -97,5 +121,11 @@ function changeBackground (){
   backgroundContainer.style.backgroundSize='cover'
 }
 
+//change pageStyle
+function changeSlidePageStyle(direction){
+  sliderImage = document.createElement('div');
+  sliderImage.classList.add('slider_image','slider_page_container');
+  sliderImage.innerHTML = structureWindowPage[direction-1]
+}
 
 export {slider,changeBackground};

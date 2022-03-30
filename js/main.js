@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded',() => {
     createNewWindowMessage();
   };
 
-  // createWindowMessage(windowMessageContentHello);
+  createWindowMessage(windowMessageContentHello);
 
   // click NEXT button
   function createNewWindowMessage (){
@@ -30,15 +30,30 @@ document.addEventListener('DOMContentLoaded',() => {
       console.log('click'); 
       document.querySelector('.message_container').remove();
   
-      if (currentWindow===1){
-        createWindowMessage(windowMessageContentBackground);
-        slider();
-        changeBackground();
-
-        currentWindow=2;
-      } else if (currentWindow===2){
-        createWindowMessage(contentWindowStructure)
+      switch (currentWindow){
+        case 1:
+          createWindowMessage(windowMessageContentBackground);
+          slider(currentWindow,5);
+          changeBackground ()
+          currentWindow=2;
+          break;
+        case 2:
+          createWindowMessage(contentWindowStructure)
+          slider(currentWindow,3);
+          // currentWindow=3;
+          break;
       }
+
+
+      // if (currentWindow===1){
+      //   createWindowMessage(windowMessageContentBackground);
+      //   slider(currentWindow);
+
+      //   currentWindow=2;
+      // } else if (currentWindow===2){
+      //   createWindowMessage(contentWindowStructure)
+      //   slider(currentWindow);
+      // }
 
 
 

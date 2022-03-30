@@ -91,7 +91,7 @@ $message_width:400px;
       justify-content: center;
       width: 260px;
       
-      // overflow: hidden;
+      overflow: hidden;
       margin:0 5px;
       border-radius: 10px;
       box-shadow:5px 5px 20px;
@@ -116,10 +116,7 @@ $message_width:400px;
           &:nth-child(3){
             left:135px;
           }
-
         }
-        
-
       }
     }
   }   

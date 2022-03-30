@@ -13,16 +13,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "changeBackground": () => (/* binding */ changeBackground),
 /* harmony export */   "slider": () => (/* binding */ slider)
 /* harmony export */ });
+/* harmony import */ var _window_contents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./window_contents */ "./js/modules/window_contents.js");
 
 
 
+;
 
 //slider
 let currentSlide;
+let sliderImage;
 
-function slider(){
+function slider(currentWindow, quantitySlider){
   let sliderTimer = true;
-  let quantitySlider = 5; //quantity pictures in slider
   let nextSlide = currentSlide+1;
   let prevSlide = currentSlide-1;
   let firstSliderImage;
@@ -46,22 +48,32 @@ function slider(){
         nextSlide=currentSlide+1
       };
 
-    const image = document.createElement('img');
-    image.classList.add('slider_image');
-    image.setAttribute('src',`/img/background/background-${nextSlide}.jpg`);
-    image.setAttribute('alt',`background-image-${nextSlide}`);
+      switch(currentWindow){
+        case 1: 
+        changeSlideBackground(nextSlide);
+        changeBackground();
+        break;
+        case 2: 
+        changeSlidePageStyle(nextSlide);
+        break;
+      }
+      
+      // const image = document.createElement('img');
+      // image.classList.add('slider_image');
+      // image.setAttribute('src',`/img/background/background-${nextSlide}.jpg`);
+      // image.setAttribute('alt',`background-image-${nextSlide}`);
 
-    firstSliderImage = document.querySelector('.slider_image:first-child');  
-    firstSliderImage.remove();
+      firstSliderImage = document.querySelector('.slider_image:first-child');  
+      firstSliderImage.remove();
 
-    document.querySelector('.slider_images_container').append(image);
+      document.querySelector('.slider_images_container').append(sliderImage);
 
-    console.log(`currentSlide ${currentSlide}`);
+      console.log(`currentSlide ${currentSlide}`);
 
-    changeBackground();
+      
 
-    sliderTimer = false;
-    setTimeout(()=>sliderTimer=true,500);
+      sliderTimer = false;
+      setTimeout(()=>sliderTimer=true,500);
     };
   });
 
@@ -81,19 +93,26 @@ function slider(){
         prevSlide = currentSlide-1
       }
 
-      const image = document.createElement('img');
-      image.classList.add('slider_image');
-      image.setAttribute('src',`/img/background/background-${prevSlide}.jpg`);
-      image.setAttribute('alt',`background-image-${prevSlide}`);
+      switch(currentWindow){
+        case 1:
+          changeSlideBackground(prevSlide);
+          changeBackground();
+        break;
+        case 2:
+          changeSlidePageStyle(prevSlide);
+        break;
+      }
+      // const image = document.createElement('img');
+      // image.classList.add('slider_image');
+      // image.setAttribute('src',`/img/background/background-${prevSlide}.jpg`);
+      // image.setAttribute('alt',`background-image-${prevSlide}`);
 
       lastSliderImage = document.querySelector('.slider_image:last-child');
       lastSliderImage.remove();
 
-      document.querySelector('.slider_images_container').prepend(image);
+      document.querySelector('.slider_images_container').prepend(sliderImage);
 
       console.log(`currentSlide ${currentSlide}`);
-
-      changeBackground();
 
       sliderTimer = false;
       setTimeout(()=>sliderTimer=true,500);
@@ -102,9 +121,15 @@ function slider(){
 }
 
 //change background
+function changeSlideBackground(direction){
+  sliderImage = document.createElement('img');
+  sliderImage.classList.add('slider_image');
+  sliderImage.setAttribute('src',`/img/background/background-${direction}.jpg`);
+  sliderImage.setAttribute('alt',`background-image-${direction}`);
+}
+
 function changeBackground (){
   let backgroundContainer = document.querySelector('.main_container');
-
 
   backgroundContainer.style.backgroundImage= `url(/img/background/background-${currentSlide}.jpg)`;
   backgroundContainer.style.backgroundAttachment='fixed';
@@ -112,6 +137,12 @@ function changeBackground (){
   backgroundContainer.style.backgroundSize='cover'
 }
 
+//change pageStyle
+function changeSlidePageStyle(direction){
+  sliderImage = document.createElement('div');
+  sliderImage.classList.add('slider_image','slider_page_container');
+  sliderImage.innerHTML = _window_contents__WEBPACK_IMPORTED_MODULE_0__.structureWindowPage[direction-1]
+}
 
 
 
@@ -126,6 +157,7 @@ function changeBackground (){
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "contentWindowStructure": () => (/* binding */ contentWindowStructure),
+/* harmony export */   "structureWindowPage": () => (/* binding */ structureWindowPage),
 /* harmony export */   "windowMessageContentBackground": () => (/* binding */ windowMessageContentBackground),
 /* harmony export */   "windowMessageContentHello": () => (/* binding */ windowMessageContentHello)
 /* harmony export */ });
@@ -184,36 +216,78 @@ const windowMessageContentBackground = `
 
 
 //content window structure (3)
+
+const structureWindowPage_1 =`
+<div class="page_header_container">
+  <div class="header_content slider_page_font">header 1</div>
+</div>
+<div class="page_main_container">
+  <div class="main_nav-menu slider_page_font">navigation menu</div>
+  <div class="main_content slider_page_font">main content</div>
+</div>
+<div class="page_footer_container slider_page_font">footer</div>
+`;
+
+const structureWindowPage_2 =`
+<div class="page_header_container">
+  <div class="header_content slider_page_font">header 2</div>
+</div>
+<div class="page_main_container">
+  <div class="main_nav-menu slider_page_font">navigation menu</div>
+  <div class="main_content slider_page_font">main content</div>
+</div>
+<div class="page_footer_container slider_page_font">footer</div>
+`;
+
+const structureWindowPage_3 =`
+<div class="page_header_container">
+  <div class="header_content slider_page_font">header 3</div>
+</div>
+<div class="page_main_container">
+  <div class="main_nav-menu slider_page_font">navigation menu</div>
+  <div class="main_content slider_page_font">main content</div>
+</div>
+<div class="page_footer_container slider_page_font">footer</div>
+`;
+
+const structureWindowPage = [structureWindowPage_1,structureWindowPage_2,structureWindowPage_3]
+
 const contentWindowStructure = `
-<h2 class="message_font_header">
-  Структура страницы
-</h2>
-<p class="message_font_text">
-  Выберите структуру страницы.
-</p>
-<div class="message_slider_container">
-  <div class="slider_arrow arrow-prev">
-    <img src="./img/arrow-1.png" alt="arrow">
-  </div>
-  <div class="slider_window">
-    <div class="slider_images_container">
-      <img src="./img/background/background-5.jpg" alt="background-image-5" class="slider_image">
-      <img src="./img/background/background-1.jpg" alt="background-image-2" class="slider_image">
-      <img src="./img/background/background-2.jpg" alt="background-image-2" class="slider_image">
+  <h2 class="message_font_header">
+    Структура страницы
+  </h2>
+  <p class="message_font_text">
+    Выберите структуру страницы.
+  </p>
+  <div class="message_slider_container slider_page">
+    <div class="slider_arrow arrow-prev">
+      <img src="./img/arrow-1.png" alt="arrow">
+    </div>
+    <div class="slider_window">
+      <div class="slider_images_container">
+        <div class="slider_page_container slider_image">
+          ${structureWindowPage_3}
+        </div>
+        <div class="slider_page_container slider_image">
+          ${structureWindowPage_1}
+        </div>
+        <div class="slider_page_container slider_image">
+          ${structureWindowPage_2}
+        </div>
+        
+      </div>
+    </div>
+    <div class="slider_arrow arrow-next">
+      <img src="./img/arrow-1.png" alt="arrow">
     </div>
   </div>
-  <div class="slider_arrow arrow-next">
-    <img src="./img/arrow-1.png" alt="arrow">
-  </div>
-</div>
-<p class="message_font_dialog">
-  Для продолжения нажмите на кнопку
-</p>
-<div class="message_button_container">
-  <button class="message_button message_button_font button_befor">Назад</button>
-  <button class="message_button message_button_font button_next ">Далее</button>
-</div>`;
-
+  <p class="message_font_dialog">
+    Для продолжения нажмите на кнопку
+  </p>
+  <div class="message_button_container">
+    <button class="message_button message_button_font button_befor">Назад</button>
+    <button class="message_button message_button_font button_next ">Далее</button>
+  </div>`;
 
 
 
@@ -309,7 +383,7 @@ document.addEventListener('DOMContentLoaded',() => {
     createNewWindowMessage();
   };
 
-  // createWindowMessage(windowMessageContentHello);
+  createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentHello);
 
   // click NEXT button
   function createNewWindowMessage (){
@@ -320,15 +394,30 @@ document.addEventListener('DOMContentLoaded',() => {
       console.log('click'); 
       document.querySelector('.message_container').remove();
   
-      if (currentWindow===1){
-        createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentBackground);
-        (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)();
-        (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground)();
-
-        currentWindow=2;
-      } else if (currentWindow===2){
-        createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowStructure)
+      switch (currentWindow){
+        case 1:
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentBackground);
+          (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,5);
+          (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground) ()
+          currentWindow=2;
+          break;
+        case 2:
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowStructure)
+          ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,3);
+          // currentWindow=3;
+          break;
       }
+
+
+      // if (currentWindow===1){
+      //   createWindowMessage(windowMessageContentBackground);
+      //   slider(currentWindow);
+
+      //   currentWindow=2;
+      // } else if (currentWindow===2){
+      //   createWindowMessage(contentWindowStructure)
+      //   slider(currentWindow);
+      // }
 
 
 
