@@ -58,11 +58,6 @@ function slider(currentWindow, quantitySlider){
         break;
       }
       
-      // const image = document.createElement('img');
-      // image.classList.add('slider_image');
-      // image.setAttribute('src',`/img/background/background-${nextSlide}.jpg`);
-      // image.setAttribute('alt',`background-image-${nextSlide}`);
-
       firstSliderImage = document.querySelector('.slider_image:first-child');  
       firstSliderImage.remove();
 
@@ -102,10 +97,6 @@ function slider(currentWindow, quantitySlider){
           changeSlidePageStyle(prevSlide);
         break;
       }
-      // const image = document.createElement('img');
-      // image.classList.add('slider_image');
-      // image.setAttribute('src',`/img/background/background-${prevSlide}.jpg`);
-      // image.setAttribute('alt',`background-image-${prevSlide}`);
 
       lastSliderImage = document.querySelector('.slider_image:last-child');
       lastSliderImage.remove();
@@ -124,14 +115,14 @@ function slider(currentWindow, quantitySlider){
 function changeSlideBackground(direction){
   sliderImage = document.createElement('img');
   sliderImage.classList.add('slider_image');
-  sliderImage.setAttribute('src',`/img/background/background-${direction}.jpg`);
+  sliderImage.setAttribute('src',`./img/background/background-${direction}.jpg`);
   sliderImage.setAttribute('alt',`background-image-${direction}`);
 }
 
 function changeBackground (){
   let backgroundContainer = document.querySelector('.main_container');
 
-  backgroundContainer.style.backgroundImage= `url(/img/background/background-${currentSlide}.jpg)`;
+  backgroundContainer.style.backgroundImage= `url(./img/background/background-${currentSlide}.jpg)`;
   backgroundContainer.style.backgroundAttachment='fixed';
   backgroundContainer.style.backgroundRepeat='no-repeat';
   backgroundContainer.style.backgroundSize='cover'
@@ -140,7 +131,7 @@ function changeBackground (){
 //change pageStyle
 function changeSlidePageStyle(direction){
   sliderImage = document.createElement('div');
-  sliderImage.classList.add('slider_image','slider_page_container');
+  sliderImage.classList.add('slider_image');
   sliderImage.innerHTML = _window_contents__WEBPACK_IMPORTED_MODULE_0__.structureWindowPage[direction-1]
 }
 
@@ -218,36 +209,42 @@ const windowMessageContentBackground = `
 //content window structure (3)
 
 const structureWindowPage_1 =`
-<div class="page_header_container">
-  <div class="header_content slider_page_font">header 1</div>
+<div class="slider_page_container">
+  <div class="page_header_container">
+    <div class="header_content slider_page_font">header 1</div>
+  </div>
+  <div class="page_main_container page_main_container_variant-1">
+    <div class="page_main_nav-menu slider_page_font">navigation menu</div>
+    <div class="page_main_content slider_page_font">main content</div>
+  </div>
+  <div class="page_footer_container slider_page_font">footer</div>
 </div>
-<div class="page_main_container">
-  <div class="main_nav-menu slider_page_font">navigation menu</div>
-  <div class="main_content slider_page_font">main content</div>
-</div>
-<div class="page_footer_container slider_page_font">footer</div>
 `;
 
 const structureWindowPage_2 =`
-<div class="page_header_container">
-  <div class="header_content slider_page_font">header 2</div>
+<div class="slider_page_container">
+  <div class="page_header_container">
+    <div class="header_content slider_page_font">header 2</div>
+  </div>
+  <div class="page_main_container page_main_container_variant-2">
+    <div class="page_main_nav-menu slider_page_font">navigation menu</div>
+    <div class="page_main_content slider_page_font">main content</div>
+  </div>
+  <div class="page_footer_container slider_page_font">footer</div>
 </div>
-<div class="page_main_container">
-  <div class="main_nav-menu slider_page_font">navigation menu</div>
-  <div class="main_content slider_page_font">main content</div>
-</div>
-<div class="page_footer_container slider_page_font">footer</div>
 `;
 
 const structureWindowPage_3 =`
-<div class="page_header_container">
-  <div class="header_content slider_page_font">header 3</div>
+<div class="slider_page_container">
+  <div class="page_header_container">
+    <div class="header_content slider_page_font">header 3</div>
+  </div>
+  <div class="page_main_container page_main_container_variant-3">
+    <div class="page_main_nav-menu slider_page_font">navigation menu</div>
+    <div class="page_main_content slider_page_font">main content</div>
+  </div>
+  <div class="page_footer_container slider_page_font">footer</div>
 </div>
-<div class="page_main_container">
-  <div class="main_nav-menu slider_page_font">navigation menu</div>
-  <div class="main_content slider_page_font">main content</div>
-</div>
-<div class="page_footer_container slider_page_font">footer</div>
 `;
 
 const structureWindowPage = [structureWindowPage_1,structureWindowPage_2,structureWindowPage_3]
@@ -265,13 +262,13 @@ const contentWindowStructure = `
     </div>
     <div class="slider_window">
       <div class="slider_images_container">
-        <div class="slider_page_container slider_image">
+        <div class="slider_image">
           ${structureWindowPage_3}
         </div>
-        <div class="slider_page_container slider_image">
+        <div class="slider_image">
           ${structureWindowPage_1}
         </div>
-        <div class="slider_page_container slider_image">
+        <div class="slider_image">
           ${structureWindowPage_2}
         </div>
         

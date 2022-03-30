@@ -91,7 +91,7 @@ $message_width:400px;
       justify-content: center;
       width: 260px;
       
-      overflow: hidden;
+      overflow: hidden; //hidden window
       margin:0 5px;
       border-radius: 10px;
       box-shadow:5px 5px 20px;
@@ -103,9 +103,12 @@ $message_width:400px;
         transition: 2s;
 
         .slider_image{
+          display: flex;
+          justify-content: center;
           position: absolute;
           width:260px;
           transition: 0.5s;
+          
 
           &:nth-child(1){
             left:-395px;
@@ -133,6 +136,15 @@ $message_width:400px;
     .slider_window{
       height: 300px;
 
+
+      @mixin border-page {
+        border: 1px solid blue;
+        border-radius: 5px;
+        box-shadow: 0 0 5px blue,inset 0 0 5px blue;
+
+        background-color: red;
+      }
+
       .slider_page_container{
         display: flex;
         flex-direction: column;
@@ -140,57 +152,72 @@ $message_width:400px;
         width: 210px;
         height: 260px;
         margin-top: 20px;
-        border: 1px solid blue;
-        border-radius: 5px;
-        box-shadow: 0 0 5px blue,inset 0 0 5px blue;
+
+        @include border-page;
+        background-color:transparent;
 
         .page_header_container{
           height: 20px;
         
           margin: 5px;
-          border: 1px solid blue;
-          border-radius: 5px;
-          box-shadow: 0 0 5px blue,inset 0 0 5px blue;
-
-          background-color: red;
+          @include border-page;
         }
 
         .page_main_container{
           display: flex;
           height: 200px;
+        }
 
-          .main_nav-menu{
+        .page_main_container_variant-1{
+          .page_main_nav-menu{
             width: 30px;
-
             margin: 5px;
-            border: 1px solid blue;
-            border-radius: 5px;
-            box-shadow: 0 0 5px blue,inset 0 0 5px blue;
-
-            background-color: red;
-
+            @include border-page;
             writing-mode: vertical-rl;
           }
-
-          .main_content{
+          
+          .page_main_content{
             width: 100%;
             margin: 5px;
-            border: 1px solid blue;
-            border-radius: 5px;
-            box-shadow: 0 0 5px blue,inset 0 0 5px blue;
+            @include border-page;
+          }
+        }
 
-            background-color: red;
+        .page_main_container_variant-2{
+          flex-direction: column;
+          .page_main_nav-menu{
+            height: 20px;
+            margin: 5px;
+            @include border-page;
+          }
+          
+          .page_main_content{
+            height: 100%;
+            margin: 5px;
+            @include border-page;
+          }
+        }
+
+        .page_main_container_variant-3{
+          flex-direction: row-reverse;
+          .page_main_nav-menu{
+            width: 30px;
+            margin: 5px;
+            @include border-page;
+            writing-mode: vertical-rl;
+          }
+          
+          .page_main_content{
+            width: 100%;
+            margin: 5px;
+            @include border-page;
           }
         }
 
         .page_footer_container{
           height: 20px;
           margin: 5px;
-          border: 1px solid blue;
-          border-radius: 5px;
-          box-shadow: 0 0 5px blue,inset 0 0 5px blue;
-
-          background-color: red;
+          @include border-page;
         }
       }
     }

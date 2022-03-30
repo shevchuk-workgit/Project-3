@@ -42,11 +42,6 @@ function slider(currentWindow, quantitySlider){
         break;
       }
       
-      // const image = document.createElement('img');
-      // image.classList.add('slider_image');
-      // image.setAttribute('src',`/img/background/background-${nextSlide}.jpg`);
-      // image.setAttribute('alt',`background-image-${nextSlide}`);
-
       firstSliderImage = document.querySelector('.slider_image:first-child');  
       firstSliderImage.remove();
 
@@ -86,10 +81,6 @@ function slider(currentWindow, quantitySlider){
           changeSlidePageStyle(prevSlide);
         break;
       }
-      // const image = document.createElement('img');
-      // image.classList.add('slider_image');
-      // image.setAttribute('src',`/img/background/background-${prevSlide}.jpg`);
-      // image.setAttribute('alt',`background-image-${prevSlide}`);
 
       lastSliderImage = document.querySelector('.slider_image:last-child');
       lastSliderImage.remove();
@@ -108,14 +99,14 @@ function slider(currentWindow, quantitySlider){
 function changeSlideBackground(direction){
   sliderImage = document.createElement('img');
   sliderImage.classList.add('slider_image');
-  sliderImage.setAttribute('src',`/img/background/background-${direction}.jpg`);
+  sliderImage.setAttribute('src',`./img/background/background-${direction}.jpg`);
   sliderImage.setAttribute('alt',`background-image-${direction}`);
 }
 
 function changeBackground (){
   let backgroundContainer = document.querySelector('.main_container');
 
-  backgroundContainer.style.backgroundImage= `url(/img/background/background-${currentSlide}.jpg)`;
+  backgroundContainer.style.backgroundImage= `url(./img/background/background-${currentSlide}.jpg)`;
   backgroundContainer.style.backgroundAttachment='fixed';
   backgroundContainer.style.backgroundRepeat='no-repeat';
   backgroundContainer.style.backgroundSize='cover'
@@ -124,7 +115,7 @@ function changeBackground (){
 //change pageStyle
 function changeSlidePageStyle(direction){
   sliderImage = document.createElement('div');
-  sliderImage.classList.add('slider_image','slider_page_container');
+  sliderImage.classList.add('slider_image');
   sliderImage.innerHTML = structureWindowPage[direction-1]
 }
 
