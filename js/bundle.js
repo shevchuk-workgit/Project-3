@@ -14,10 +14,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "slider": () => (/* binding */ slider)
 /* harmony export */ });
 /* harmony import */ var _window_contents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./window_contents */ "./js/modules/window_contents.js");
+/* harmony import */ var _structure_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./structure_page */ "./js/modules/structure_page.js");
 
 
 
 ;
+
 
 //slider
 let currentSlide;
@@ -55,6 +57,7 @@ function slider(currentWindow, quantitySlider){
         break;
         case 2: 
         changeSlidePageStyle(nextSlide);
+        (0,_structure_page__WEBPACK_IMPORTED_MODULE_1__.changeStructurePage)(currentSlide);
         break;
       }
       
@@ -95,6 +98,7 @@ function slider(currentWindow, quantitySlider){
         break;
         case 2:
           changeSlidePageStyle(prevSlide);
+          (0,_structure_page__WEBPACK_IMPORTED_MODULE_1__.changeStructurePage)(currentSlide);
         break;
       }
 
@@ -120,7 +124,7 @@ function changeSlideBackground(direction){
 }
 
 function changeBackground (){
-  let backgroundContainer = document.querySelector('.main_container');
+  let backgroundContainer = document.querySelector('.body_container');
 
   backgroundContainer.style.backgroundImage= `url(./img/background/background-${currentSlide}.jpg)`;
   backgroundContainer.style.backgroundAttachment='fixed';
@@ -134,6 +138,141 @@ function changeSlidePageStyle(direction){
   sliderImage.classList.add('slider_image');
   sliderImage.innerHTML = _window_contents__WEBPACK_IMPORTED_MODULE_0__.structureWindowPage[direction-1]
 }
+
+
+
+/***/ }),
+
+/***/ "./js/modules/structure_page.js":
+/*!**************************************!*\
+  !*** ./js/modules/structure_page.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "changeStructurePage": () => (/* binding */ changeStructurePage),
+/* harmony export */   "createStructurePage": () => (/* binding */ createStructurePage)
+/* harmony export */ });
+
+
+const header = document.querySelector('.header_container');
+const main = document.querySelector('.main_container');
+const footer = document.querySelector('.footer_container');
+
+function createStructurePage(){
+
+  const header_light = document.createElement('div')
+  header_light.classList.add('temporary-light')
+  header.prepend(header_light);
+
+  const footer_light = document.createElement('div')
+  footer_light.classList.add('temporary-light')
+  footer.prepend(footer_light);
+  
+  const main_nav = document.createElement('nav')
+  main_nav.classList.add('nav_container', 'temporary-light')
+  main.prepend(main_nav);
+
+  const main_article = document.createElement('article')
+  main_article.classList.add('article_container', 'temporary-light')
+  main.append(main_article);
+}
+
+function changeStructurePage(currentSlide){
+  main.classList.add(`main_container_variant-1`);
+
+  switch(currentSlide){
+    case 1:
+      main.classList.remove('main_container_variant-2','main_container_variant-3')
+      main.classList.add(`main_container_variant-${currentSlide}`)
+      break;
+    case 2:
+      main.classList.remove('main_container_variant-1','main_container_variant-3')
+      main.classList.add(`main_container_variant-${currentSlide}`)
+      break;
+    case 3:
+      main.classList.remove('main_container_variant-1','main_container_variant-2')
+      main.classList.add(`main_container_variant-${currentSlide}`)
+      break;
+  }
+
+  
+
+
+
+
+  // main.attributes.removeNamedItem
+  // main.classList.add(`main_container_variant-${currentSlide}`)
+
+  // switch(variant){
+  //   case 1:
+
+  //     break;
+}
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  // if (variant===1){
+
+  //   main.classList.remove('main_container_variant-2','main_container_variant-3')
+  //   main.classList.add('main_container_variant-1')
+
+  // } else if(variant===2) {
+  //   const header_light = document.createElement('div')
+  //   header_light.classList.add('temporary-light')
+  //   header.prepend(header_light);
+
+  //   const footer_light = document.createElement('div')
+  //   footer_light.classList.add('temporary-light')
+  //   footer.prepend(footer_light);
+
+  //   main.classList.add('main_container_variant-2')
+
+  //   const main_nav = document.createElement('nav')
+  //   main_nav.classList.add('nav_container', 'temporary-light')
+  //   main.prepend(main_nav);
+
+  //   const main_article = document.createElement('article')
+  //   main_article.classList.add('article_container', 'temporary-light')
+  //   main.append(main_article);
+  // } else if(variant===3) {
+  //   const header_light = document.createElement('div')
+  //   header_light.classList.add('temporary-light')
+  //   header.prepend(header_light);
+
+  //   const footer_light = document.createElement('div')
+  //   footer_light.classList.add('temporary-light')
+  //   footer.prepend(footer_light);
+
+  //   main.classList.add('main_container_variant-3')
+
+  //   const main_nav = document.createElement('nav')
+  //   main_nav.classList.add('nav_container', 'temporary-light')
+  //   main.prepend(main_nav);
+
+  //   const main_article = document.createElement('article')
+  //   main_article.classList.add('article_container', 'temporary-light')
+  //   main.append(main_article);
+
+  
+
+
+
+  
+
+
 
 
 
@@ -359,15 +498,17 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_window_contents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/window_contents */ "./js/modules/window_contents.js");
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
+/* harmony import */ var _modules_structure_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/structure_page */ "./js/modules/structure_page.js");
 
 
 ;
 
 
 
+
 document.addEventListener('DOMContentLoaded',() => {
 
-  const mainContainer = document.querySelector('.main_container');
+  const mainContainer = document.querySelector('.body_container');
   let currentWindow = 1;
 
   //create window message
@@ -376,7 +517,7 @@ document.addEventListener('DOMContentLoaded',() => {
     message.classList.add('message_container')
     message.innerHTML = content;
 
-    mainContainer.append(message);
+    mainContainer.prepend(message);
     createNewWindowMessage();
   };
 
@@ -401,23 +542,11 @@ document.addEventListener('DOMContentLoaded',() => {
         case 2:
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowStructure)
           ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,3);
+          (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.createStructurePage)()
+          ;(0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.changeStructurePage)(1)
           // currentWindow=3;
           break;
       }
-
-
-      // if (currentWindow===1){
-      //   createWindowMessage(windowMessageContentBackground);
-      //   slider(currentWindow);
-
-      //   currentWindow=2;
-      // } else if (currentWindow===2){
-      //   createWindowMessage(contentWindowStructure)
-      //   slider(currentWindow);
-      // }
-
-
-
     });
   }
 

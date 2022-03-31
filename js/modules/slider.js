@@ -2,6 +2,7 @@
 'use strict'
 
 import {structureWindowPage} from './window_contents'
+import {changeStructurePage} from './structure_page';
 
 //slider
 let currentSlide;
@@ -39,6 +40,7 @@ function slider(currentWindow, quantitySlider){
         break;
         case 2: 
         changeSlidePageStyle(nextSlide);
+        changeStructurePage(currentSlide);
         break;
       }
       
@@ -79,6 +81,7 @@ function slider(currentWindow, quantitySlider){
         break;
         case 2:
           changeSlidePageStyle(prevSlide);
+          changeStructurePage(currentSlide);
         break;
       }
 
@@ -104,7 +107,7 @@ function changeSlideBackground(direction){
 }
 
 function changeBackground (){
-  let backgroundContainer = document.querySelector('.main_container');
+  let backgroundContainer = document.querySelector('.body_container');
 
   backgroundContainer.style.backgroundImage= `url(./img/background/background-${currentSlide}.jpg)`;
   backgroundContainer.style.backgroundAttachment='fixed';

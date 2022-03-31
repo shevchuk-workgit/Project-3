@@ -2,11 +2,12 @@
 
 import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure} from "./modules/window_contents";
 import {slider,changeBackground} from './modules/slider';
+import {createStructurePage,changeStructurePage} from './modules/structure_page';
 
 
 document.addEventListener('DOMContentLoaded',() => {
 
-  const mainContainer = document.querySelector('.main_container');
+  const mainContainer = document.querySelector('.body_container');
   let currentWindow = 1;
 
   //create window message
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded',() => {
     message.classList.add('message_container')
     message.innerHTML = content;
 
-    mainContainer.append(message);
+    mainContainer.prepend(message);
     createNewWindowMessage();
   };
 
@@ -40,23 +41,11 @@ document.addEventListener('DOMContentLoaded',() => {
         case 2:
           createWindowMessage(contentWindowStructure)
           slider(currentWindow,3);
+          createStructurePage()
+          changeStructurePage(1)
           // currentWindow=3;
           break;
       }
-
-
-      // if (currentWindow===1){
-      //   createWindowMessage(windowMessageContentBackground);
-      //   slider(currentWindow);
-
-      //   currentWindow=2;
-      // } else if (currentWindow===2){
-      //   createWindowMessage(contentWindowStructure)
-      //   slider(currentWindow);
-      // }
-
-
-
     });
   }
 
