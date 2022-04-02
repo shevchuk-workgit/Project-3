@@ -34,11 +34,11 @@ function slider(currentWindow, quantitySlider){
       };
 
       switch(currentWindow){
-        case 1: 
+        case 2: 
         changeSlideBackground(nextSlide);
         changeBackground();
         break;
-        case 2: 
+        case 3: 
         changeSlidePageStyle(nextSlide);
         changeStructurePage(currentSlide);
         break;
@@ -75,11 +75,11 @@ function slider(currentWindow, quantitySlider){
       }
 
       switch(currentWindow){
-        case 1:
+        case 2:
           changeSlideBackground(prevSlide);
           changeBackground();
         break;
-        case 2:
+        case 3:
           changeSlidePageStyle(prevSlide);
           changeStructurePage(currentSlide);
         break;

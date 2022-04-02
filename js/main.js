@@ -18,9 +18,14 @@ document.addEventListener('DOMContentLoaded',() => {
 
     mainContainer.prepend(message);
     createNewWindowMessage();
+    returnPreviousWindowMessage ();
+
+    if(content===windowMessageContentHello){
+      const buttonBack = document.querySelector('.button_back').style.backgroundColor = '#ccc';
+    }
   };
 
-  createWindowMessage(windowMessageContentHello);
+  // createWindowMessage(windowMessageContentHello);
 
   // click NEXT button
   function createNewWindowMessage (){
@@ -28,30 +33,69 @@ document.addEventListener('DOMContentLoaded',() => {
     
 
     buttonNext.addEventListener('click',()=>{
-      console.log('click'); 
+      console.log('click NEXT'); 
       document.querySelector('.message_container').remove();
   
       switch (currentWindow){
         case 1:
+          currentWindow=2;
           createWindowMessage(windowMessageContentBackground);
           slider(currentWindow,5);
           changeBackground ()
-          currentWindow=2;
           break;
+
         case 2:
+          currentWindow=3;
           createWindowMessage(contentWindowStructure)
           slider(currentWindow,3);
           createStructurePage()
           changeStructurePage(1)
-          // currentWindow=3;
           break;
+
+        case 3:
+          currentWindow=4
+          createWindowMessage()
       }
     });
   }
 
+  //click back button
+  function returnPreviousWindowMessage (){
 
+    const buttonBack = document.querySelector('.button_back')
 
+    buttonBack.addEventListener('click', ()=>{
+      console.log('click PREV')
+      
+      switch(currentWindow){
+        case 1:
+          buttonBack.style.backgroundColor = '#ccc';
+          break;
+        case 2:
+          currentWindow=1
+          document.querySelector('.message_container').remove();
+          createWindowMessage(windowMessageContentHello)
+          buttonBack.style.backgroundColor = '#ccc';
+          
+          break;
+        case 3:
+          currentWindow=2;
+          document.querySelector('.message_container').remove();
+          document.querySelector('header').innerHTML='';
+          document.querySelector('main').innerHTML='';
+          document.querySelector('footer').innerHTML='';
+          createWindowMessage(windowMessageContentBackground);
+          console.log(currentWindow)
+          slider(currentWindow,5);
+          changeBackground ()
+          
+          break;
+        
 
+      }
+    })
+
+  }
 
 
 

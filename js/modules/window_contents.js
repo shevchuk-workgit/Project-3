@@ -13,7 +13,7 @@ const windowMessageContentHello = `
   Для продолжения нажмите на кнопку
 </p>
 <div class="message_button_container">
-  <button class="message_button message_button_font button_befor">Назад</button>
+  <button class="message_button message_button_font button_back">Назад</button>
   <button class="message_button message_button_font button_next ">Далее</button>
 </div>`;
 
@@ -47,7 +47,7 @@ const windowMessageContentBackground = `
   Для продолжения нажмите на кнопку
 </p>
 <div class="message_button_container">
-  <button class="message_button message_button_font button_befor">Назад</button>
+  <button class="message_button message_button_font button_back">Назад</button>
   <button class="message_button message_button_font button_next ">Далее</button>
 </div>`;
 
@@ -128,7 +128,7 @@ const contentWindowStructure = `
     Для продолжения нажмите на кнопку
   </p>
   <div class="message_button_container">
-    <button class="message_button message_button_font button_befor">Назад</button>
+    <button class="message_button message_button_font button_back">Назад</button>
     <button class="message_button message_button_font button_next ">Далее</button>
   </div>`;
 

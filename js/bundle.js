@@ -51,11 +51,11 @@ function slider(currentWindow, quantitySlider){
       };
 
       switch(currentWindow){
-        case 1: 
+        case 2: 
         changeSlideBackground(nextSlide);
         changeBackground();
         break;
-        case 2: 
+        case 3: 
         changeSlidePageStyle(nextSlide);
         (0,_structure_page__WEBPACK_IMPORTED_MODULE_1__.changeStructurePage)(currentSlide);
         break;
@@ -92,11 +92,11 @@ function slider(currentWindow, quantitySlider){
       }
 
       switch(currentWindow){
-        case 1:
+        case 2:
           changeSlideBackground(prevSlide);
           changeBackground();
         break;
-        case 2:
+        case 3:
           changeSlidePageStyle(prevSlide);
           (0,_structure_page__WEBPACK_IMPORTED_MODULE_1__.changeStructurePage)(currentSlide);
         break;
@@ -306,7 +306,7 @@ const windowMessageContentHello = `
   Для продолжения нажмите на кнопку
 </p>
 <div class="message_button_container">
-  <button class="message_button message_button_font button_befor">Назад</button>
+  <button class="message_button message_button_font button_back">Назад</button>
   <button class="message_button message_button_font button_next ">Далее</button>
 </div>`;
 
@@ -340,7 +340,7 @@ const windowMessageContentBackground = `
   Для продолжения нажмите на кнопку
 </p>
 <div class="message_button_container">
-  <button class="message_button message_button_font button_befor">Назад</button>
+  <button class="message_button message_button_font button_back">Назад</button>
   <button class="message_button message_button_font button_next ">Далее</button>
 </div>`;
 
@@ -421,7 +421,7 @@ const contentWindowStructure = `
     Для продолжения нажмите на кнопку
   </p>
   <div class="message_button_container">
-    <button class="message_button message_button_font button_befor">Назад</button>
+    <button class="message_button message_button_font button_back">Назад</button>
     <button class="message_button message_button_font button_next ">Далее</button>
   </div>`;
 
@@ -519,9 +519,14 @@ document.addEventListener('DOMContentLoaded',() => {
 
     mainContainer.prepend(message);
     createNewWindowMessage();
+    returnPreviousWindowMessage ();
+
+    if(content===_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentHello){
+      const buttonBack = document.querySelector('.button_back').style.backgroundColor = '#ccc';
+    }
   };
 
-  createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentHello);
+  // createWindowMessage(windowMessageContentHello);
 
   // click NEXT button
   function createNewWindowMessage (){
@@ -529,30 +534,69 @@ document.addEventListener('DOMContentLoaded',() => {
     
 
     buttonNext.addEventListener('click',()=>{
-      console.log('click'); 
+      console.log('click NEXT'); 
       document.querySelector('.message_container').remove();
   
       switch (currentWindow){
         case 1:
+          currentWindow=2;
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentBackground);
           (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,5);
           (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground) ()
-          currentWindow=2;
           break;
+
         case 2:
+          currentWindow=3;
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowStructure)
           ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,3);
           (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.createStructurePage)()
           ;(0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.changeStructurePage)(1)
-          // currentWindow=3;
           break;
+
+        case 3:
+          currentWindow=4
+          createWindowMessage()
       }
     });
   }
 
+  //click back button
+  function returnPreviousWindowMessage (){
 
+    const buttonBack = document.querySelector('.button_back')
 
+    buttonBack.addEventListener('click', ()=>{
+      console.log('click PREV')
+      
+      switch(currentWindow){
+        case 1:
+          buttonBack.style.backgroundColor = '#ccc';
+          break;
+        case 2:
+          currentWindow=1
+          document.querySelector('.message_container').remove();
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentHello)
+          buttonBack.style.backgroundColor = '#ccc';
+          
+          break;
+        case 3:
+          currentWindow=2;
+          document.querySelector('.message_container').remove();
+          document.querySelector('header').innerHTML='';
+          document.querySelector('main').innerHTML='';
+          document.querySelector('footer').innerHTML='';
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentBackground);
+          console.log(currentWindow)
+          ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,5);
+          (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground) ()
+          
+          break;
+        
 
+      }
+    })
+
+  }
 
 
 
