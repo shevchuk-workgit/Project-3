@@ -1,19 +1,22 @@
 
 @mixin border-light {
+  
   border: 5px solid blue;
   border-radius: 50px;
   box-shadow: 0 0 20px blue,inset 0 0 100px blue;
+  box-sizing: border-box;
 }
 
-.header_container{
+header{
   padding: 20px;
-  .temporary-light {
+  .header_container{
+    border-radius: 50px;
     height: 100px;
+  }
+  .temporary-light {
     @include border-light;
   }
-
 }
-
 .footer_container{
   padding: 20px;
   .temporary-light{

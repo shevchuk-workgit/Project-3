@@ -132,8 +132,61 @@ const contentWindowStructure = `
     <button class="message_button message_button_font button_next ">Далее</button>
   </div>`;
 
+//content window header style (4)
+
+const contentWindowHeaderStyle = `
+  <h2 class="message_font_header">
+  Настройка заголовка.
+  </h2>
+  <p class="message_font_text">
+  Настройте заголовок страницы.
+  </p>
+  <div class="message_form_header">
+  <div class="message_font_subtext">
+    Выберите цвет заголовка:
+  </div>
+  <div class="message_color-block">
+    <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
+    <div class="message_color-block_black" data-color="rgba(000,000,000,0.5)"></div>
+    <div class="message_color-block_blue" data-color="rgba(000,000,255,0.5)"></div>
+    <div class="message_color-block_fuchsia" data-color="rgba(255,000,255,0.5)"></div>
+    <div class="message_color-block_gray" data-color="rgba(128,128,128,0.5)"></div>
+    <div class="message_color-block_green" data-color="rgba(000,128,000,0.5)"></div>
+    <div class="message_color-block_lime" data-color="rgba(000,255,000,0.5)"></div>
+    <div class="message_color-block_maroon" data-color="rgba(128,000,000,0.5)"></div>
+    <div class="message_color-block_navy" data-color="rgba(000,000,128,0.5)"></div>
+    <div class="message_color-block_olive" data-color="rgba(128,128,000,0.5)"></div>
+    <div class="message_color-block_purple" data-color="rgba(128,000,128,0.5)"></div>
+    <div class="message_color-block_red" data-color="rgba(255,000,000,0.5)"></div>
+    <div class="message_color-block_silver" data-color="rgba(192,192,192,0.5)"></div>
+    <div class="message_color-block_teal" data-color="rgba(000,128,128,0.5)"></div>
+    <div class="message_color-block_white" data-color="rgba(255,255,255,0.5)"></div>
+    <div class="message_color-block_yellow" data-color="rgba(255,255,000,0.5)"></div>
+  </div>
+  <div class="message_font_subtext">
+    Выберите прозрачность фона:
+  </div>
+  <div class="message_color_opacity">
+    <input type="range" min="0" max="100" name="message_color_opacity-range" id="message_color_opacity-range">
+    <div class="message_color_opacity_text-block">
+      <p class="message_font_subtext">или введите значение:</p>
+      <input type="text" name="message_color_opacity-range_text" id="message_color_opacity-range_text" class="message_input_text message_font_subtext">
+    </div>
+  </div>
+  <div class="message_font_subtext">
+    Введите текст заголовка:
+  </div>
+  <input type="text" name="message_change-header-text" id="message_change-header-text" class="message_input_text message_font_subtext">
+  </div >
+  <p class="message_font_dialog">
+  Для продолжения нажмите на кнопку
+  </p>
+  <div class="message_button_container">
+  <button class="message_button message_button_font button_back">Назад</button>
+  <button class="message_button message_button_font button_next ">Далее</button>
+  </div>
+`;
 
 
 
-
-export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage};
+export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage,contentWindowHeaderStyle};

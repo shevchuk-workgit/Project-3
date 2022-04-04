@@ -2,6 +2,59 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./js/modules/page_style.js":
+/*!**********************************!*\
+  !*** ./js/modules/page_style.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "changeBackgroundColor": () => (/* binding */ changeBackgroundColor)
+/* harmony export */ });
+
+
+
+function changeBackgroundColor(){
+  const container = document.querySelector('.header_container');
+  const colorBlockContainer =document.querySelector('.message_color-block')
+  const messageColorOpacityRange = document.querySelector('#message_color_opacity-range')
+
+
+  colorBlockContainer.addEventListener('click',(colorBlock)=>{
+    if (colorBlock.target.dataset.color){
+      // console.log(colorBlock.target.dataset.color);
+      container.classList.remove('temporary-light')
+      container.style.backgroundColor = colorBlock.target.dataset.color;
+      console.log(container.style.backgroundColor);
+
+      container.style.backgroundColor = container.style.backgroundColor.replace(/0.5/gi,`${messageColorOpacityRange.value/100}`);
+      console.log(messageColorOpacityRange.value)
+      console.log(container.style.backgroundColor);
+      // changeBackgroundColor();
+      // let a = container.style.backgroundColor;
+      // a=a.replace("0.5","1.0");
+      // console.log(a);
+
+      }
+  })
+
+  messageColorOpacityRange.addEventListener('input',()=>{
+    container.style.backgroundColor = container.style.backgroundColor.replace(/0.5/gi,`${messageColorOpacityRange.value/100}`);
+    console.log(messageColorOpacityRange.value);
+  })
+
+  // container.style.backgroundColor = container.style.backgroundColor.replace(/0.5/gi,'1');
+
+  // console.log(messageColorOpacityRange.value) ;
+
+
+}
+
+
+
+/***/ }),
+
 /***/ "./js/modules/slider.js":
 /*!******************************!*\
   !*** ./js/modules/slider.js ***!
@@ -156,26 +209,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 
 
-const header = document.querySelector('.header_container');
+const header = document.querySelector('header');
 const main = document.querySelector('.main_container');
 const footer = document.querySelector('.footer_container');
 
 function createStructurePage(){
 
-  const header_light = document.createElement('div')
-  header_light.classList.add('temporary-light')
+  const header_light = document.createElement('div');
+  header_light.classList.add('temporary-light','header_container');
   header.prepend(header_light);
 
-  const footer_light = document.createElement('div')
-  footer_light.classList.add('temporary-light')
+  const footer_light = document.createElement('div');
+  footer_light.classList.add('temporary-light');
   footer.prepend(footer_light);
   
-  const main_nav = document.createElement('nav')
-  main_nav.classList.add('nav_container', 'temporary-light')
+  const main_nav = document.createElement('nav');
+  main_nav.classList.add('nav_container', 'temporary-light');
   main.prepend(main_nav);
 
-  const main_article = document.createElement('article')
-  main_article.classList.add('article_container', 'temporary-light')
+  const main_article = document.createElement('article');
+  main_article.classList.add('article_container', 'temporary-light');
   main.append(main_article);
 }
 
@@ -184,93 +237,26 @@ function changeStructurePage(currentSlide){
 
   switch(currentSlide){
     case 1:
-      main.classList.remove('main_container_variant-2','main_container_variant-3')
-      main.classList.add(`main_container_variant-${currentSlide}`)
+      main.classList.remove('main_container_variant-2','main_container_variant-3');
+      main.classList.add(`main_container_variant-${currentSlide}`);
       break;
     case 2:
-      main.classList.remove('main_container_variant-1','main_container_variant-3')
-      main.classList.add(`main_container_variant-${currentSlide}`)
+      main.classList.remove('main_container_variant-1','main_container_variant-3');
+      main.classList.add(`main_container_variant-${currentSlide}`);
       break;
     case 3:
-      main.classList.remove('main_container_variant-1','main_container_variant-2')
-      main.classList.add(`main_container_variant-${currentSlide}`)
+      main.classList.remove('main_container_variant-1','main_container_variant-2');
+      main.classList.add(`main_container_variant-${currentSlide}`);
       break;
   }
 
-  
 
-
-
-
-  // main.attributes.removeNamedItem
-  // main.classList.add(`main_container_variant-${currentSlide}`)
-
-  // switch(variant){
-  //   case 1:
-
-  //     break;
 }
   
 
   
 
 
-
-
-
-
-
-
-
-
-
-  // if (variant===1){
-
-  //   main.classList.remove('main_container_variant-2','main_container_variant-3')
-  //   main.classList.add('main_container_variant-1')
-
-  // } else if(variant===2) {
-  //   const header_light = document.createElement('div')
-  //   header_light.classList.add('temporary-light')
-  //   header.prepend(header_light);
-
-  //   const footer_light = document.createElement('div')
-  //   footer_light.classList.add('temporary-light')
-  //   footer.prepend(footer_light);
-
-  //   main.classList.add('main_container_variant-2')
-
-  //   const main_nav = document.createElement('nav')
-  //   main_nav.classList.add('nav_container', 'temporary-light')
-  //   main.prepend(main_nav);
-
-  //   const main_article = document.createElement('article')
-  //   main_article.classList.add('article_container', 'temporary-light')
-  //   main.append(main_article);
-  // } else if(variant===3) {
-  //   const header_light = document.createElement('div')
-  //   header_light.classList.add('temporary-light')
-  //   header.prepend(header_light);
-
-  //   const footer_light = document.createElement('div')
-  //   footer_light.classList.add('temporary-light')
-  //   footer.prepend(footer_light);
-
-  //   main.classList.add('main_container_variant-3')
-
-  //   const main_nav = document.createElement('nav')
-  //   main_nav.classList.add('nav_container', 'temporary-light')
-  //   main.prepend(main_nav);
-
-  //   const main_article = document.createElement('article')
-  //   main_article.classList.add('article_container', 'temporary-light')
-  //   main.append(main_article);
-
-  
-
-
-
-  
 
 
 
@@ -286,6 +272,7 @@ function changeStructurePage(currentSlide){
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "contentWindowHeaderStyle": () => (/* binding */ contentWindowHeaderStyle),
 /* harmony export */   "contentWindowStructure": () => (/* binding */ contentWindowStructure),
 /* harmony export */   "structureWindowPage": () => (/* binding */ structureWindowPage),
 /* harmony export */   "windowMessageContentBackground": () => (/* binding */ windowMessageContentBackground),
@@ -425,7 +412,60 @@ const contentWindowStructure = `
     <button class="message_button message_button_font button_next ">Далее</button>
   </div>`;
 
+//content window header style (4)
 
+const contentWindowHeaderStyle = `
+  <h2 class="message_font_header">
+  Настройка заголовка.
+  </h2>
+  <p class="message_font_text">
+  Настройте заголовок страницы.
+  </p>
+  <div class="message_form_header">
+  <div class="message_font_subtext">
+    Выберите цвет заголовка:
+  </div>
+  <div class="message_color-block">
+    <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
+    <div class="message_color-block_black" data-color="rgba(000,000,000,0.5)"></div>
+    <div class="message_color-block_blue" data-color="rgba(000,000,255,0.5)"></div>
+    <div class="message_color-block_fuchsia" data-color="rgba(255,000,255,0.5)"></div>
+    <div class="message_color-block_gray" data-color="rgba(128,128,128,0.5)"></div>
+    <div class="message_color-block_green" data-color="rgba(000,128,000,0.5)"></div>
+    <div class="message_color-block_lime" data-color="rgba(000,255,000,0.5)"></div>
+    <div class="message_color-block_maroon" data-color="rgba(128,000,000,0.5)"></div>
+    <div class="message_color-block_navy" data-color="rgba(000,000,128,0.5)"></div>
+    <div class="message_color-block_olive" data-color="rgba(128,128,000,0.5)"></div>
+    <div class="message_color-block_purple" data-color="rgba(128,000,128,0.5)"></div>
+    <div class="message_color-block_red" data-color="rgba(255,000,000,0.5)"></div>
+    <div class="message_color-block_silver" data-color="rgba(192,192,192,0.5)"></div>
+    <div class="message_color-block_teal" data-color="rgba(000,128,128,0.5)"></div>
+    <div class="message_color-block_white" data-color="rgba(255,255,255,0.5)"></div>
+    <div class="message_color-block_yellow" data-color="rgba(255,255,000,0.5)"></div>
+  </div>
+  <div class="message_font_subtext">
+    Выберите прозрачность фона:
+  </div>
+  <div class="message_color_opacity">
+    <input type="range" min="0" max="100" name="message_color_opacity-range" id="message_color_opacity-range">
+    <div class="message_color_opacity_text-block">
+      <p class="message_font_subtext">или введите значение:</p>
+      <input type="text" name="message_color_opacity-range_text" id="message_color_opacity-range_text" class="message_input_text message_font_subtext">
+    </div>
+  </div>
+  <div class="message_font_subtext">
+    Введите текст заголовка:
+  </div>
+  <input type="text" name="message_change-header-text" id="message_change-header-text" class="message_input_text message_font_subtext">
+  </div >
+  <p class="message_font_dialog">
+  Для продолжения нажмите на кнопку
+  </p>
+  <div class="message_button_container">
+  <button class="message_button message_button_font button_back">Назад</button>
+  <button class="message_button message_button_font button_next ">Далее</button>
+  </div>
+`;
 
 
 
@@ -499,9 +539,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_window_contents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/window_contents */ "./js/modules/window_contents.js");
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
 /* harmony import */ var _modules_structure_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/structure_page */ "./js/modules/structure_page.js");
+/* harmony import */ var _modules_page_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/page_style */ "./js/modules/page_style.js");
 
 
 ;
+
 
 
 
@@ -510,6 +552,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
   const mainContainer = document.querySelector('.body_container');
   let currentWindow = 1;
+  // let currentWindow = 3;
 
   //create window message
   function createWindowMessage (content){
@@ -526,7 +569,7 @@ document.addEventListener('DOMContentLoaded',() => {
     }
   };
 
-  // createWindowMessage(windowMessageContentHello);
+  createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentHello);
 
   // click NEXT button
   function createNewWindowMessage (){
@@ -555,7 +598,8 @@ document.addEventListener('DOMContentLoaded',() => {
 
         case 3:
           currentWindow=4
-          createWindowMessage()
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowHeaderStyle)
+          ;(0,_modules_page_style__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)()
       }
     });
   }

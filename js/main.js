@@ -1,14 +1,16 @@
 'use strict'
 
-import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure} from "./modules/window_contents";
+import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,contentWindowHeaderStyle} from "./modules/window_contents";
 import {slider,changeBackground} from './modules/slider';
 import {createStructurePage,changeStructurePage} from './modules/structure_page';
+import {changeBackgroundColor} from './modules/page_style';
 
 
 document.addEventListener('DOMContentLoaded',() => {
 
   const mainContainer = document.querySelector('.body_container');
   let currentWindow = 1;
+  // let currentWindow = 3;
 
   //create window message
   function createWindowMessage (content){
@@ -25,7 +27,7 @@ document.addEventListener('DOMContentLoaded',() => {
     }
   };
 
-  // createWindowMessage(windowMessageContentHello);
+  createWindowMessage(windowMessageContentHello);
 
   // click NEXT button
   function createNewWindowMessage (){
@@ -54,7 +56,8 @@ document.addEventListener('DOMContentLoaded',() => {
 
         case 3:
           currentWindow=4
-          createWindowMessage()
+          createWindowMessage(contentWindowHeaderStyle)
+          changeBackgroundColor()
       }
     });
   }
