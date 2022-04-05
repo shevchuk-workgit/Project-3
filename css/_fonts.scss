@@ -39,3 +39,10 @@
   @include fonts;
   font-size: 16px;
 }
+
+.header_font-text{
+  @include fonts;
+  font-size: 50px;
+  font-weight: 900;
+  font-style: italic;
+}

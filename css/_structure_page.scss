@@ -10,9 +10,16 @@
 header{
   padding: 20px;
   .header_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 50px;
     height: 100px;
+    // .header_content{
+    
+    // }
   }
+
   .temporary-light {
     @include border-light;
   }

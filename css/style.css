@@ -51,6 +51,16 @@
   font-size: 16px;
 }
 
+.header_font-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  font-size: 50px;
+  font-weight: 900;
+  font-style: italic;
+}
+
 .message_container {
   position: absolute;
   width: 400px;
@@ -489,6 +499,15 @@ header {
 }
 
 header .header_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 50px;
   height: 100px;
 }
