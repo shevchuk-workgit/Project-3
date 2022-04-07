@@ -1,9 +1,9 @@
 'use strict'
 
-import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,contentWindowHeaderStyle} from "./modules/window_contents";
+import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,contentWindowHeaderStyle,contentWindowNawMenuStyle} from "./modules/window_contents";
 import {slider,changeBackground} from './modules/slider';
 import {createStructurePage,changeStructurePage} from './modules/structure_page';
-import {changeBackgroundColor} from './modules/page_style';
+import {changeBackgroundColor,createHeaderText} from './modules/page_content';
 
 
 document.addEventListener('DOMContentLoaded',() => {
@@ -48,16 +48,24 @@ document.addEventListener('DOMContentLoaded',() => {
 
         case 2:
           currentWindow=3;
-          createWindowMessage(contentWindowStructure)
+          createWindowMessage(contentWindowStructure);
           slider(currentWindow,3);
-          createStructurePage()
-          changeStructurePage(1)
+          createStructurePage();
+          changeStructurePage(1);
           break;
 
         case 3:
           currentWindow=4
-          createWindowMessage(contentWindowHeaderStyle)
-          changeBackgroundColor()
+          createWindowMessage(contentWindowHeaderStyle);
+          changeBackgroundColor('.header_container');
+          createHeaderText();
+          break;
+
+        case 4:
+          currentWindow=5
+          createWindowMessage(contentWindowNawMenuStyle);
+          changeBackgroundColor('.nav_container');
+          break;
       }
     });
   }

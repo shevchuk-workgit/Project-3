@@ -2,28 +2,30 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./js/modules/page_style.js":
-/*!**********************************!*\
-  !*** ./js/modules/page_style.js ***!
-  \**********************************/
+/***/ "./js/modules/page_content.js":
+/*!************************************!*\
+  !*** ./js/modules/page_content.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "changeBackgroundColor": () => (/* binding */ changeBackgroundColor)
+/* harmony export */   "changeBackgroundColor": () => (/* binding */ changeBackgroundColor),
+/* harmony export */   "createHeaderText": () => (/* binding */ createHeaderText)
 /* harmony export */ });
 
 
+let container;
 
-function changeBackgroundColor(){
-  const container = document.querySelector('.header_container');
+function changeBackgroundColor(currentBlock){
   const colorBlockContainer =document.querySelector('.message_color-block');
   const messageColorOpacityRange = document.querySelector('#message_color_opacity-range');
   const textColorOpacity =document.querySelector('#message_color_opacity-range_text');
-  const messageHeaderText = document.querySelector('#message_change-header-text');
+  
   let currentOpacity = '0.5';
   let nextOpacity = messageColorOpacityRange.value/100;
 
+  container = document.querySelector(currentBlock);
   textColorOpacity.value=+currentOpacity*100;
 
 
@@ -83,22 +85,27 @@ function changeBackgroundColor(){
     currentOpacity=nextOpacity;
   }
 
-  function createHeaderText(){
-    const headerText = document.createElement('div');
-    headerText.classList.add('header_content','header_font-text');
-    container.append(headerText);
 
-
-    messageHeaderText.addEventListener('input',()=>{
-
-      console.log(messageHeaderText.value);
-      headerText.textContent = messageHeaderText.value
-    })
-
-  }
-  
-  createHeaderText()
 }
+
+function createHeaderText(){
+  const headerContainer = document.querySelector('.header_container');
+  const messageHeaderText = document.querySelector('#message_change-header-text');
+  const headerText = document.createElement('div');
+
+  headerText.classList.add('header_content','header_font-text');
+  headerContainer.append(headerText);
+  headerText.textContent = 'Заголовок';
+
+
+  messageHeaderText.addEventListener('input',()=>{
+
+    console.log(messageHeaderText.value);
+    headerText.textContent = messageHeaderText.value
+  })
+}
+
+// createHeaderText()
 
 
 
@@ -322,6 +329,7 @@ function changeStructurePage(currentSlide){
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "contentWindowHeaderStyle": () => (/* binding */ contentWindowHeaderStyle),
+/* harmony export */   "contentWindowNawMenuStyle": () => (/* binding */ contentWindowNawMenuStyle),
 /* harmony export */   "contentWindowStructure": () => (/* binding */ contentWindowStructure),
 /* harmony export */   "structureWindowPage": () => (/* binding */ structureWindowPage),
 /* harmony export */   "windowMessageContentBackground": () => (/* binding */ windowMessageContentBackground),
@@ -470,9 +478,9 @@ const contentWindowHeaderStyle = `
   <p class="message_font_text">
   Настройте заголовок страницы.
   </p>
-  <div class="message_form_header">
+  <div class="message_form_content-page">
   <div class="message_font_subtext">
-    Выберите цвет заголовка:
+    Выберите цвет фона:
   </div>
   <div class="message_color-block">
     <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
@@ -516,7 +524,71 @@ const contentWindowHeaderStyle = `
   </div>
 `;
 
+const contentWindowNawMenuStyle = `
+  <h2 class="message_font_header">
+  Настройка меню навигации.
+  </h2>
+  <p class="message_font_text">
+  Настройте меню навигации страницы.
+  </p>
+  <div class="message_form_content-page">
+    <div class="message_font_subtext">
+      Выберите цвет фона:
+    </div>
+    <div class="message_color-block">
+      <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
+      <div class="message_color-block_black" data-color="rgba(000,000,000,0.5)"></div>
+      <div class="message_color-block_blue" data-color="rgba(000,000,255,0.5)"></div>
+      <div class="message_color-block_fuchsia" data-color="rgba(255,000,255,0.5)"></div>
+      <div class="message_color-block_gray" data-color="rgba(128,128,128,0.5)"></div>
+      <div class="message_color-block_green" data-color="rgba(000,128,000,0.5)"></div>
+      <div class="message_color-block_lime" data-color="rgba(000,255,000,0.5)"></div>
+      <div class="message_color-block_maroon" data-color="rgba(128,000,000,0.5)"></div>
+      <div class="message_color-block_navy" data-color="rgba(000,000,128,0.5)"></div>
+      <div class="message_color-block_olive" data-color="rgba(128,128,000,0.5)"></div>
+      <div class="message_color-block_purple" data-color="rgba(128,000,128,0.5)"></div>
+      <div class="message_color-block_red" data-color="rgba(255,000,000,0.5)"></div>
+      <div class="message_color-block_silver" data-color="rgba(192,192,192,0.5)"></div>
+      <div class="message_color-block_teal" data-color="rgba(000,128,128,0.5)"></div>
+      <div class="message_color-block_white" data-color="rgba(255,255,255,0.5)"></div>
+      <div class="message_color-block_yellow" data-color="rgba(255,255,000,0.5)"></div>
+    </div>
+    <div class="message_font_subtext">
+      Выберите прозрачность фона:
+    </div>
+    <div class="message_color_opacity">
+      <input type="range" min="0" max="100" name="message_color_opacity-range" id="message_color_opacity-range">
+      <div class="message_color_opacity_text-block">
+        <p class="message_font_subtext">или введите значение:</p>
+        <input type="text" name="message_color_opacity-range_text" id="message_color_opacity-range_text" class="message_input_text message_font_subtext">
+      </div>
+    </div>
+    <div class="message_font_subtext">
+      Введите намнования меню и их адреса:
+    </div>
 
+    <div class="message_nav-menu_add-menu message_nav_button message_font_subtext ">Добавить меню</div>
+
+    <div class="message_nav-menu_text-block">
+      <div class="message_nav-menu_remove message_nav_button">&#10006</div>
+      <p class="message_font_subtext">Наименование меню 1:</p>
+      <input type="text" name="message_nav-menu_text-content_1" id="message_nav-menu_text-content_1" class="message_input_text message_font_subtext">
+      <p class="message_font_subtext">Адрес меню 1:</p>
+      <input type="text" name="message_nav-menu_link_1" id="message_nav-menu_link_1" class="message_input_text message_font_subtext">
+    </div>
+
+  </div>
+
+
+
+    <p class="message_font_dialog">
+    Для продолжения нажмите на кнопку
+    </p>
+    <div class="message_button_container">
+    <button class="message_button message_button_font button_back">Назад</button>
+    <button class="message_button message_button_font button_next ">Далее</button>
+  </div>
+`;
 
 
 
@@ -588,7 +660,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_window_contents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/window_contents */ "./js/modules/window_contents.js");
 /* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
 /* harmony import */ var _modules_structure_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/structure_page */ "./js/modules/structure_page.js");
-/* harmony import */ var _modules_page_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/page_style */ "./js/modules/page_style.js");
+/* harmony import */ var _modules_page_content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/page_content */ "./js/modules/page_content.js");
 
 
 ;
@@ -639,16 +711,24 @@ document.addEventListener('DOMContentLoaded',() => {
 
         case 2:
           currentWindow=3;
-          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowStructure)
-          ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,3);
-          (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.createStructurePage)()
-          ;(0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.changeStructurePage)(1)
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowStructure);
+          (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,3);
+          (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.createStructurePage)();
+          (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.changeStructurePage)(1);
           break;
 
         case 3:
           currentWindow=4
-          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowHeaderStyle)
-          ;(0,_modules_page_style__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)()
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowHeaderStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.header_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.createHeaderText)();
+          break;
+
+        case 4:
+          currentWindow=5
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowNawMenuStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.nav_container');
+          break;
       }
     });
   }

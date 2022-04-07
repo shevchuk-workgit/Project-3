@@ -1,15 +1,16 @@
 'use strict'
 
+let container;
 
-function changeBackgroundColor(){
-  const container = document.querySelector('.header_container');
+function changeBackgroundColor(currentBlock){
   const colorBlockContainer =document.querySelector('.message_color-block');
   const messageColorOpacityRange = document.querySelector('#message_color_opacity-range');
   const textColorOpacity =document.querySelector('#message_color_opacity-range_text');
-  const messageHeaderText = document.querySelector('#message_change-header-text');
+  
   let currentOpacity = '0.5';
   let nextOpacity = messageColorOpacityRange.value/100;
 
+  container = document.querySelector(currentBlock);
   textColorOpacity.value=+currentOpacity*100;
 
 
@@ -69,21 +70,26 @@ function changeBackgroundColor(){
     currentOpacity=nextOpacity;
   }
 
-  function createHeaderText(){
-    const headerText = document.createElement('div');
-    headerText.classList.add('header_content','header_font-text');
-    container.append(headerText);
 
-
-    messageHeaderText.addEventListener('input',()=>{
-
-      console.log(messageHeaderText.value);
-      headerText.textContent = messageHeaderText.value
-    })
-
-  }
-  
-  createHeaderText()
 }
 
-export {changeBackgroundColor};
+function createHeaderText(){
+  const headerContainer = document.querySelector('.header_container');
+  const messageHeaderText = document.querySelector('#message_change-header-text');
+  const headerText = document.createElement('div');
+
+  headerText.classList.add('header_content','header_font-text');
+  headerContainer.append(headerText);
+  headerText.textContent = 'Заголовок';
+
+
+  messageHeaderText.addEventListener('input',()=>{
+
+    console.log(messageHeaderText.value);
+    headerText.textContent = messageHeaderText.value
+  })
+}
+
+// createHeaderText()
+
+export {changeBackgroundColor,createHeaderText};
