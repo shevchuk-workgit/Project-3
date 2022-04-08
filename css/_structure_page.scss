@@ -48,6 +48,10 @@ header{
     width: 300px;
     margin-right: 20px;
     border-radius: 50px;
+    .nav_container_menu-block{
+      display: flex;
+      flex-direction: column;
+    }
   }
   .article_container{
     width: 100%;
@@ -60,6 +64,10 @@ header{
     height: 150px;
     margin-bottom: 20px;
     border-radius: 50px;
+    .nav_container_menu-block{
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
   .article_container{
     height: 100%;
@@ -72,6 +80,10 @@ header{
     width: 300px;
     margin-left: 20px;
     border-radius: 50px;
+    .nav_container_menu-block{
+      display: flex;
+      flex-direction: column;
+    }
   }
   .article_container{
     width: 100%;

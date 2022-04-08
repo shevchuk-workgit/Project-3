@@ -3,14 +3,14 @@
 import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,contentWindowHeaderStyle,contentWindowNawMenuStyle} from "./modules/window_contents";
 import {slider,changeBackground} from './modules/slider';
 import {createStructurePage,changeStructurePage} from './modules/structure_page';
-import {changeBackgroundColor,createHeaderText} from './modules/page_content';
+import {changeBackgroundColor,createHeaderText,navMenuControl} from './modules/page_content';
 
 
 document.addEventListener('DOMContentLoaded',() => {
 
   const mainContainer = document.querySelector('.body_container');
   let currentWindow = 1;
-  // let currentWindow = 3;
+  // let currentWindow = 4;
 
   //create window message
   function createWindowMessage (content){
@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded',() => {
           currentWindow=5
           createWindowMessage(contentWindowNawMenuStyle);
           changeBackgroundColor('.nav_container');
+          navMenuControl();
           break;
       }
     });

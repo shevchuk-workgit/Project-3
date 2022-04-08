@@ -1,5 +1,7 @@
 'use strict'
 
+import {newWindowNavMenuItem} from './window_contents';
+
 let container;
 
 function changeBackgroundColor(currentBlock){
@@ -73,6 +75,7 @@ function changeBackgroundColor(currentBlock){
 
 }
 
+// createHeaderText()
 function createHeaderText(){
   const headerContainer = document.querySelector('.header_container');
   const messageHeaderText = document.querySelector('#message_change-header-text');
@@ -90,6 +93,71 @@ function createHeaderText(){
   })
 }
 
-// createHeaderText()
+// add and delete nav menu item
+function navMenuControl(){
+  const buttonCreateNavMenu = document.querySelector('.message_nav-menu_add-menu');
+  const windowContainer = document.querySelector('.message_form_content-page');
+  // const mainContainer = document.querySelector('.main_container');
+  const navMenuContainer = document.querySelector('.nav_container');
 
-export {changeBackgroundColor,createHeaderText};
+  let currentMenu = 1;
+  let navMenuBlock;
+
+  function createNavMenuBlock(){
+    navMenuBlock = document.createElement('div');
+    navMenuBlock.classList.add('nav_container_menu-block')
+    navMenuContainer.append(navMenuBlock);
+  };
+
+  createNavMenuBlock();
+
+  // if (mainContainer.classList.contains('main_container_variant-1')){
+  //   console.log(1);
+  // }else if(mainContainer.classList.contains('main_container_variant-2')){
+  //   console.log(2);
+  // }else if(mainContainer.classList.contains('main_container_variant-3')){
+  //   console.log(3);
+  // }
+
+
+  //create button
+  buttonCreateNavMenu.addEventListener('click',()=>{
+    
+    const navMenuBlock = document.createElement('div')
+    navMenuBlock.classList.add('message_nav-menu_text-block')
+    navMenuBlock.innerHTML = newWindowNavMenuItem(currentMenu);
+    windowContainer.append(navMenuBlock);
+
+    ++currentMenu;
+
+    
+
+
+    changeMenuValue ()
+    
+
+
+  })
+
+
+  function changeMenuValue (){
+    //remove buttton
+    let buttonRemoveNawMenu = document.querySelectorAll('.message_nav-menu_remove');
+
+    buttonRemoveNawMenu.forEach((item)=>{
+      item.addEventListener('click',(element)=>{
+        element.target.parentElement.remove();
+        console.log('element.target')
+      })
+    })
+
+    // let navMenuName = 
+
+  }
+
+
+
+  
+}
+
+export {changeBackgroundColor,createHeaderText,navMenuControl};

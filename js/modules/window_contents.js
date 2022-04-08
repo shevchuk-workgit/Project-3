@@ -230,15 +230,7 @@ const contentWindowNawMenuStyle = `
       Введите намнования меню и их адреса:
     </div>
 
-    <div class="message_nav-menu_add-menu message_nav_button message_font_subtext ">Добавить меню</div>
-
-    <div class="message_nav-menu_text-block">
-      <div class="message_nav-menu_remove message_nav_button">&#10006</div>
-      <p class="message_font_subtext">Наименование меню 1:</p>
-      <input type="text" name="message_nav-menu_text-content_1" id="message_nav-menu_text-content_1" class="message_input_text message_font_subtext">
-      <p class="message_font_subtext">Адрес меню 1:</p>
-      <input type="text" name="message_nav-menu_link_1" id="message_nav-menu_link_1" class="message_input_text message_font_subtext">
-    </div>
+    <button class="message_nav-menu_add-menu message_nav_button message_font_subtext ">Добавить меню</button>
 
   </div>
 
@@ -253,4 +245,18 @@ const contentWindowNawMenuStyle = `
   </div>
 `;
 
-export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage,contentWindowHeaderStyle,contentWindowNawMenuStyle};
+
+function newWindowNavMenuItem (currentMenu){
+
+  const WindowNavMenuItem =`
+  <button class="message_nav-menu_remove message_nav_button">&#10006</button>
+  <p class="message_font_subtext">Наименование меню ${currentMenu}:</p>
+  <input type="text" name="message_nav-menu_text-content_${currentMenu}" id="message_nav-menu_text-content_${currentMenu}" class="message_input_text message_font_subtext" value="Меню ${currentMenu}">
+  <p class="message_font_subtext">Адрес ссылки ${currentMenu}:</p>
+  <input type="text" name="message_nav-menu_link_${currentMenu}" id="message_nav-menu_link_${currentMenu}" class="message_input_text message_font_subtext" value="https://www.google.ru/">
+`
+  return WindowNavMenuItem
+}
+
+
+export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage,contentWindowHeaderStyle,contentWindowNawMenuStyle,newWindowNavMenuItem};

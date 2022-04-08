@@ -11,9 +11,13 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "changeBackgroundColor": () => (/* binding */ changeBackgroundColor),
-/* harmony export */   "createHeaderText": () => (/* binding */ createHeaderText)
+/* harmony export */   "createHeaderText": () => (/* binding */ createHeaderText),
+/* harmony export */   "navMenuControl": () => (/* binding */ navMenuControl)
 /* harmony export */ });
+/* harmony import */ var _window_contents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./window_contents */ "./js/modules/window_contents.js");
 
+
+;
 
 let container;
 
@@ -88,6 +92,7 @@ function changeBackgroundColor(currentBlock){
 
 }
 
+// createHeaderText()
 function createHeaderText(){
   const headerContainer = document.querySelector('.header_container');
   const messageHeaderText = document.querySelector('#message_change-header-text');
@@ -105,7 +110,72 @@ function createHeaderText(){
   })
 }
 
-// createHeaderText()
+// add and delete nav menu item
+function navMenuControl(){
+  const buttonCreateNavMenu = document.querySelector('.message_nav-menu_add-menu');
+  const windowContainer = document.querySelector('.message_form_content-page');
+  // const mainContainer = document.querySelector('.main_container');
+  const navMenuContainer = document.querySelector('.nav_container');
+
+  let currentMenu = 1;
+  let navMenuBlock;
+
+  function createNavMenuBlock(){
+    navMenuBlock = document.createElement('div');
+    navMenuBlock.classList.add('nav_container_menu-block')
+    navMenuContainer.append(navMenuBlock);
+  };
+
+  createNavMenuBlock();
+
+  // if (mainContainer.classList.contains('main_container_variant-1')){
+  //   console.log(1);
+  // }else if(mainContainer.classList.contains('main_container_variant-2')){
+  //   console.log(2);
+  // }else if(mainContainer.classList.contains('main_container_variant-3')){
+  //   console.log(3);
+  // }
+
+
+  //create button
+  buttonCreateNavMenu.addEventListener('click',()=>{
+    
+    const navMenuBlock = document.createElement('div')
+    navMenuBlock.classList.add('message_nav-menu_text-block')
+    navMenuBlock.innerHTML = (0,_window_contents__WEBPACK_IMPORTED_MODULE_0__.newWindowNavMenuItem)(currentMenu);
+    windowContainer.append(navMenuBlock);
+
+    ++currentMenu;
+
+    
+
+
+    changeMenuValue ()
+    
+
+
+  })
+
+
+  function changeMenuValue (){
+    //remove buttton
+    let buttonRemoveNawMenu = document.querySelectorAll('.message_nav-menu_remove');
+
+    buttonRemoveNawMenu.forEach((item)=>{
+      item.addEventListener('click',(element)=>{
+        element.target.parentElement.remove();
+        console.log('element.target')
+      })
+    })
+
+    // let navMenuName = 
+
+  }
+
+
+
+  
+}
 
 
 
@@ -331,6 +401,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "contentWindowHeaderStyle": () => (/* binding */ contentWindowHeaderStyle),
 /* harmony export */   "contentWindowNawMenuStyle": () => (/* binding */ contentWindowNawMenuStyle),
 /* harmony export */   "contentWindowStructure": () => (/* binding */ contentWindowStructure),
+/* harmony export */   "newWindowNavMenuItem": () => (/* binding */ newWindowNavMenuItem),
 /* harmony export */   "structureWindowPage": () => (/* binding */ structureWindowPage),
 /* harmony export */   "windowMessageContentBackground": () => (/* binding */ windowMessageContentBackground),
 /* harmony export */   "windowMessageContentHello": () => (/* binding */ windowMessageContentHello)
@@ -567,15 +638,7 @@ const contentWindowNawMenuStyle = `
       Введите намнования меню и их адреса:
     </div>
 
-    <div class="message_nav-menu_add-menu message_nav_button message_font_subtext ">Добавить меню</div>
-
-    <div class="message_nav-menu_text-block">
-      <div class="message_nav-menu_remove message_nav_button">&#10006</div>
-      <p class="message_font_subtext">Наименование меню 1:</p>
-      <input type="text" name="message_nav-menu_text-content_1" id="message_nav-menu_text-content_1" class="message_input_text message_font_subtext">
-      <p class="message_font_subtext">Адрес меню 1:</p>
-      <input type="text" name="message_nav-menu_link_1" id="message_nav-menu_link_1" class="message_input_text message_font_subtext">
-    </div>
+    <button class="message_nav-menu_add-menu message_nav_button message_font_subtext ">Добавить меню</button>
 
   </div>
 
@@ -589,6 +652,20 @@ const contentWindowNawMenuStyle = `
     <button class="message_button message_button_font button_next ">Далее</button>
   </div>
 `;
+
+
+function newWindowNavMenuItem (currentMenu){
+
+  const WindowNavMenuItem =`
+  <button class="message_nav-menu_remove message_nav_button">&#10006</button>
+  <p class="message_font_subtext">Наименование меню ${currentMenu}:</p>
+  <input type="text" name="message_nav-menu_text-content_${currentMenu}" id="message_nav-menu_text-content_${currentMenu}" class="message_input_text message_font_subtext" value="Меню ${currentMenu}">
+  <p class="message_font_subtext">Адрес ссылки ${currentMenu}:</p>
+  <input type="text" name="message_nav-menu_link_${currentMenu}" id="message_nav-menu_link_${currentMenu}" class="message_input_text message_font_subtext" value="https://www.google.ru/">
+`
+  return WindowNavMenuItem
+}
+
 
 
 
@@ -673,7 +750,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
   const mainContainer = document.querySelector('.body_container');
   let currentWindow = 1;
-  // let currentWindow = 3;
+  // let currentWindow = 4;
 
   //create window message
   function createWindowMessage (content){
@@ -728,6 +805,7 @@ document.addEventListener('DOMContentLoaded',() => {
           currentWindow=5
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowNawMenuStyle);
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.nav_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.navMenuControl)();
           break;
       }
     });
