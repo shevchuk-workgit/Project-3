@@ -249,7 +249,7 @@ const contentWindowNawMenuStyle = `
 function newWindowNavMenuItem (currentMenu){
 
   const WindowNavMenuItem =`
-  <button class="message_nav-menu_remove message_nav_button">&#10006</button>
+  <button class="message_nav-menu_remove message_nav_button" id="message_nav-menu_remove-${currentMenu}">&#10006</button>
   <p class="message_font_subtext">Наименование меню ${currentMenu}:</p>
   <input type="text" name="message_nav-menu_text-content_${currentMenu}" id="message_nav-menu_text-content_${currentMenu}" class="message_input_text message_font_subtext" value="Меню ${currentMenu}">
   <p class="message_font_subtext">Адрес ссылки ${currentMenu}:</p>

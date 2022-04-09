@@ -48,3 +48,11 @@
   margin-bottom: 0;
 }
 
+.font_nav-menu_item{
+  @include fonts;
+  color: black;
+  font-size: 20px;
+  font-weight: 900;
+  font-style: italic;
+  margin: 0;
+}

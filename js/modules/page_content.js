@@ -101,15 +101,9 @@ function navMenuControl(){
   const navMenuContainer = document.querySelector('.nav_container');
 
   let currentMenu = 1;
-  let navMenuBlock;
 
-  function createNavMenuBlock(){
-    navMenuBlock = document.createElement('div');
-    navMenuBlock.classList.add('nav_container_menu-block')
-    navMenuContainer.append(navMenuBlock);
-  };
 
-  createNavMenuBlock();
+
 
   // if (mainContainer.classList.contains('main_container_variant-1')){
   //   console.log(1);
@@ -122,42 +116,80 @@ function navMenuControl(){
 
   //create button
   buttonCreateNavMenu.addEventListener('click',()=>{
-    
     const navMenuBlock = document.createElement('div')
     navMenuBlock.classList.add('message_nav-menu_text-block')
     navMenuBlock.innerHTML = newWindowNavMenuItem(currentMenu);
     windowContainer.append(navMenuBlock);
 
+    createNavMenuItem(currentMenu);
+    changeNavMenuValue(currentMenu);
+    removeNavMenuBatton (currentMenu);
+    
     ++currentMenu;
-
-    
-
-
-    changeMenuValue ()
-    
-
-
   })
 
+  //remove nav menu buttton
+  function removeNavMenuBatton(currentMenu){
+    const buttonRemoveNawMenu = document.querySelector(`#message_nav-menu_remove-${currentMenu}`);
 
-  function changeMenuValue (){
-    //remove buttton
-    let buttonRemoveNawMenu = document.querySelectorAll('.message_nav-menu_remove');
+    buttonRemoveNawMenu.addEventListener('click',(element)=>{
+      document.querySelector(`.nav-menu_item-${currentMenu}`).remove();
 
-    buttonRemoveNawMenu.forEach((item)=>{
-      item.addEventListener('click',(element)=>{
-        element.target.parentElement.remove();
-        console.log('element.target')
-      })
+      element.target.parentElement.remove();
+    })  
+  }
+
+  //create nav menu item in nav-conteiner
+  let navMenuBlock;
+  function createNavMenuBlock(){
+    navMenuBlock = document.createElement('div');
+    navMenuBlock.classList.add('nav_container_menu-block');
+    navMenuContainer.append(navMenuBlock);
+  };
+
+  createNavMenuBlock();
+
+  //create nav menu item in nav-conteiner
+  function createNavMenuItem(currentMenu){
+    const navMenuItem = document.createElement('a');
+    const navMenuLink = document.querySelector(`#message_nav-menu_link_${currentMenu}`).value;
+    const navMenuName = document.querySelector(`#message_nav-menu_text-content_${currentMenu}`).value
+
+    navMenuItem.classList.add(`nav-menu_item-${currentMenu}`, 'nav-menu_item', 'font_nav-menu_item')
+    navMenuItem.setAttribute('href',`${navMenuLink}`);
+    navMenuItem.setAttribute('target','_blank');
+
+    navMenuItem.textContent =navMenuName;
+    navMenuBlock.append(navMenuItem);
+  }
+
+  function changeNavMenuValue(currentMenu){
+    const navMenuItem = document.querySelector(`.nav-menu_item-${currentMenu}`);
+    const navMenuName = document.querySelector(`#message_nav-menu_text-content_${currentMenu}`);
+    const navMenuLink = document.querySelector(`#message_nav-menu_link_${currentMenu}`);
+    
+
+
+    navMenuName.addEventListener('input',()=>{
+      navMenuItem.textContent = navMenuName.value
     })
 
-    // let navMenuName = 
-
+    navMenuLink.addEventListener('input',()=>{
+      navMenuItem.setAttribute('href',`${navMenuLink.value}`)
+    })
   }
 
 
 
-  
+
+  //click back button on header page
+  function backButtonOnHeader(){
+    let sasddf;
+    sasddf=1;
+    return asd
+  }
+  backButtonOnHeader()
+
 }
 
-export {changeBackgroundColor,createHeaderText,navMenuControl};
+export {changeBackgroundColor,createHeaderText,backButtonOnHeader,navMenuControl};

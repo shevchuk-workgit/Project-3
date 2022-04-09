@@ -3,7 +3,7 @@
 import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,contentWindowHeaderStyle,contentWindowNawMenuStyle} from "./modules/window_contents";
 import {slider,changeBackground} from './modules/slider';
 import {createStructurePage,changeStructurePage} from './modules/structure_page';
-import {changeBackgroundColor,createHeaderText,navMenuControl} from './modules/page_content';
+import {changeBackgroundColor,createHeaderText,backButtonOnHeader,navMenuControl} from './modules/page_content';
 
 
 document.addEventListener('DOMContentLoaded',() => {
