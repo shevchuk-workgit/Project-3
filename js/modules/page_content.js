@@ -1,6 +1,6 @@
 'use strict'
 
-import {newWindowNavMenuItem} from './window_contents';
+import {newWindowNavMenuItem,newWindowArticleItem} from './window_contents';
 
 let container;
 
@@ -72,6 +72,9 @@ function changeBackgroundColor(currentBlock){
     currentOpacity=nextOpacity;
   }
 
+  // if (currentBlock==='.nav_container'){
+  //   changeColorNavMenuItem()
+  // }
 
 }
 
@@ -97,27 +100,16 @@ function createHeaderText(){
 function navMenuControl(){
   const buttonCreateNavMenu = document.querySelector('.message_nav-menu_add-menu');
   const windowContainer = document.querySelector('.message_form_content-page');
-  // const mainContainer = document.querySelector('.main_container');
   const navMenuContainer = document.querySelector('.nav_container');
 
   let currentMenu = 1;
 
 
 
-
-  // if (mainContainer.classList.contains('main_container_variant-1')){
-  //   console.log(1);
-  // }else if(mainContainer.classList.contains('main_container_variant-2')){
-  //   console.log(2);
-  // }else if(mainContainer.classList.contains('main_container_variant-3')){
-  //   console.log(3);
-  // }
-
-
   //create button
   buttonCreateNavMenu.addEventListener('click',()=>{
     const navMenuBlock = document.createElement('div')
-    navMenuBlock.classList.add('message_nav-menu_text-block')
+    navMenuBlock.classList.add('message_text-block')
     navMenuBlock.innerHTML = newWindowNavMenuItem(currentMenu);
     windowContainer.append(navMenuBlock);
 
@@ -178,18 +170,88 @@ function navMenuControl(){
       navMenuItem.setAttribute('href',`${navMenuLink.value}`)
     })
   }
-
-
-
-
-  //click back button on header page
-  function backButtonOnHeader(){
-    let sasddf;
-    sasddf=1;
-    return asd
-  }
-  backButtonOnHeader()
-
 }
+//////////////////
+//////////////////
+//////////////////
+// add and delete article item
+function articleControl(){
+  const buttonCreateArticle = document.querySelector('.message_article_add');
+  const windowContainer = document.querySelector('.message_form_content-page');
+  const articleContainer = document.querySelector('.article_container');
 
-export {changeBackgroundColor,createHeaderText,backButtonOnHeader,navMenuControl};
+  let currentMenu = 1;
+
+
+
+  //create button
+  buttonCreateArticle.addEventListener('click',()=>{
+    const articleBlock = document.createElement('div')
+    articleBlock.classList.add('message_text-block')
+    articleBlock.innerHTML = newWindowArticleItem(currentMenu);
+    windowContainer.append(articleBlock);
+
+    createArticleItem(currentMenu);
+    changeArticleValue(currentMenu);
+    removeArticleBatton (currentMenu);
+    
+    ++currentMenu;
+  })
+
+  //remove article buttton
+  function removeArticleBatton(currentMenu){
+    const buttonRemoveArticle = document.querySelector(`#message_article_remove-${currentMenu}`);
+
+    buttonRemoveArticle.addEventListener('click',(element)=>{
+      document.querySelector(`.article_title_${currentMenu}`).remove();
+      document.querySelector(`.article_text-block_${currentMenu}`).remove();
+
+      element.target.parentElement.remove();
+    })  
+  }
+
+  //create article in article_container
+  let articleBlock;
+  function createArticleBlock(){
+    articleBlock = document.createElement('div');
+    articleBlock.classList.add('article_container_content');
+    articleContainer.append(articleBlock);
+  };
+
+  createArticleBlock();
+
+  //create article item in article_container_content
+  function createArticleItem(currentMenu){
+    const articleTitle = document.createElement('div');
+    const articleTextBlock = document.createElement('div')
+    const articleTitleInMessage = document.querySelector(`#message_article_title_${currentMenu}`).value
+    const articleTextBlockInMessage = document.querySelector(`#message_article_text-block_${currentMenu}`).value;
+    
+    articleTitle.classList.add(`article_title_${currentMenu}`, 'article_title', 'font_article_title')
+    articleTitle.textContent = articleTitleInMessage;
+    articleBlock.append(articleTitle);
+
+    articleTextBlock.classList.add(`article_text-block_${currentMenu}`, 'article_text-block', 'font_article_text-block');
+    articleTextBlock.textContent = articleTextBlockInMessage;
+    articleBlock.append(articleTextBlock)
+
+  }
+
+  function changeArticleValue(currentMenu){
+
+    const articleTitle = document.querySelector(`.article_title_${currentMenu}`);
+    const articleTextBlock = document.querySelector(`.article_text-block_${currentMenu}`);
+    const articleTitleInMessage = document.querySelector(`#message_article_title_${currentMenu}`);
+    const articleTextBlockInMessage = document.querySelector(`#message_article_text-block_${currentMenu}`);
+
+
+    articleTitleInMessage.addEventListener('input',()=>{
+      articleTitle.textContent = articleTitleInMessage.value;
+    })
+
+    articleTextBlockInMessage.addEventListener('input',()=>{
+      articleTextBlock.textContent = articleTextBlockInMessage.value;
+    })
+  }
+}
+export {changeBackgroundColor,createHeaderText,navMenuControl,articleControl};

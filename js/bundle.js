@@ -1,13 +1,278 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./js/modules/page_content.js":
 /*!************************************!*\
   !*** ./js/modules/page_content.js ***!
   \************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module parse failed: Export 'backButtonOnHeader' is not defined (195:47)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| }\n| \n> export {changeBackgroundColor,createHeaderText,backButtonOnHeader,navMenuControl};");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "articleControl": () => (/* binding */ articleControl),
+/* harmony export */   "changeBackgroundColor": () => (/* binding */ changeBackgroundColor),
+/* harmony export */   "createHeaderText": () => (/* binding */ createHeaderText),
+/* harmony export */   "navMenuControl": () => (/* binding */ navMenuControl)
+/* harmony export */ });
+/* harmony import */ var _window_contents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./window_contents */ "./js/modules/window_contents.js");
+
+
+;
+
+let container;
+
+function changeBackgroundColor(currentBlock){
+  const colorBlockContainer =document.querySelector('.message_color-block');
+  const messageColorOpacityRange = document.querySelector('#message_color_opacity-range');
+  const textColorOpacity =document.querySelector('#message_color_opacity-range_text');
+  
+  let currentOpacity = '0.5';
+  let nextOpacity = messageColorOpacityRange.value/100;
+
+  container = document.querySelector(currentBlock);
+  textColorOpacity.value=+currentOpacity*100;
+
+
+  colorBlockContainer.addEventListener('click',(colorBlock)=>{
+    if (colorBlock.target.dataset.color){
+      container.classList.remove('temporary-light')
+      container.style.backgroundColor = colorBlock.target.dataset.color;
+
+      container.style.backgroundColor = container.style.backgroundColor.replace('0.5',nextOpacity);
+
+      textColorOpacity.value=Math.round(currentOpacity*100);
+      
+      container.style.boxShadow = '5px 5px 5px black';
+      }
+  })
+
+  messageColorOpacityRange.addEventListener('input',()=>{
+    nextOpacity=messageColorOpacityRange.value/100;
+
+    if(nextOpacity==1){
+      nextOpacity='0.99'
+    }else if(nextOpacity==0){
+      nextOpacity='0.01'
+    };
+
+    changeOpacity()
+
+    textColorOpacity.value=Math.round(currentOpacity*100);
+  })
+
+  textColorOpacity.addEventListener('input',()=>{
+
+    if( isNaN(textColorOpacity.value)){
+      textColorOpacity.value = ""
+      nextOpacity=1/100;
+      messageColorOpacityRange.value = nextOpacity*100
+      changeOpacity()
+    }else if (textColorOpacity.value<1){
+      nextOpacity=1/100;
+      messageColorOpacityRange.value = nextOpacity*100
+      changeOpacity()
+    }else if(textColorOpacity.value>99){
+      textColorOpacity.value=99
+      nextOpacity=99/100;
+      messageColorOpacityRange.value = nextOpacity*100
+      changeOpacity()
+    } else {
+      nextOpacity = textColorOpacity.value/100
+      messageColorOpacityRange.value = nextOpacity*100
+      changeOpacity()
+    }  
+  })
+
+
+  function changeOpacity (){
+    container.style.backgroundColor = container.style.backgroundColor.replace(currentOpacity,nextOpacity);
+    currentOpacity=nextOpacity;
+  }
+
+  // if (currentBlock==='.nav_container'){
+  //   changeColorNavMenuItem()
+  // }
+
+}
+
+// createHeaderText()
+function createHeaderText(){
+  const headerContainer = document.querySelector('.header_container');
+  const messageHeaderText = document.querySelector('#message_change-header-text');
+  const headerText = document.createElement('div');
+
+  headerText.classList.add('header_content','header_font-text');
+  headerContainer.append(headerText);
+  headerText.textContent = 'Заголовок';
+
+
+  messageHeaderText.addEventListener('input',()=>{
+
+    console.log(messageHeaderText.value);
+    headerText.textContent = messageHeaderText.value
+  })
+}
+
+// add and delete nav menu item
+function navMenuControl(){
+  const buttonCreateNavMenu = document.querySelector('.message_nav-menu_add-menu');
+  const windowContainer = document.querySelector('.message_form_content-page');
+  const navMenuContainer = document.querySelector('.nav_container');
+
+  let currentMenu = 1;
+
+
+
+  //create button
+  buttonCreateNavMenu.addEventListener('click',()=>{
+    const navMenuBlock = document.createElement('div')
+    navMenuBlock.classList.add('message_text-block')
+    navMenuBlock.innerHTML = (0,_window_contents__WEBPACK_IMPORTED_MODULE_0__.newWindowNavMenuItem)(currentMenu);
+    windowContainer.append(navMenuBlock);
+
+    createNavMenuItem(currentMenu);
+    changeNavMenuValue(currentMenu);
+    removeNavMenuBatton (currentMenu);
+    
+    ++currentMenu;
+  })
+
+  //remove nav menu buttton
+  function removeNavMenuBatton(currentMenu){
+    const buttonRemoveNawMenu = document.querySelector(`#message_nav-menu_remove-${currentMenu}`);
+
+    buttonRemoveNawMenu.addEventListener('click',(element)=>{
+      document.querySelector(`.nav-menu_item-${currentMenu}`).remove();
+
+      element.target.parentElement.remove();
+    })  
+  }
+
+  //create nav menu item in nav-conteiner
+  let navMenuBlock;
+  function createNavMenuBlock(){
+    navMenuBlock = document.createElement('div');
+    navMenuBlock.classList.add('nav_container_menu-block');
+    navMenuContainer.append(navMenuBlock);
+  };
+
+  createNavMenuBlock();
+
+  //create nav menu item in nav-conteiner
+  function createNavMenuItem(currentMenu){
+    const navMenuItem = document.createElement('a');
+    const navMenuLink = document.querySelector(`#message_nav-menu_link_${currentMenu}`).value;
+    const navMenuName = document.querySelector(`#message_nav-menu_text-content_${currentMenu}`).value
+
+    navMenuItem.classList.add(`nav-menu_item-${currentMenu}`, 'nav-menu_item', 'font_nav-menu_item')
+    navMenuItem.setAttribute('href',`${navMenuLink}`);
+    navMenuItem.setAttribute('target','_blank');
+
+    navMenuItem.textContent =navMenuName;
+    navMenuBlock.append(navMenuItem);
+  }
+
+  function changeNavMenuValue(currentMenu){
+    const navMenuItem = document.querySelector(`.nav-menu_item-${currentMenu}`);
+    const navMenuName = document.querySelector(`#message_nav-menu_text-content_${currentMenu}`);
+    const navMenuLink = document.querySelector(`#message_nav-menu_link_${currentMenu}`);
+    
+
+
+    navMenuName.addEventListener('input',()=>{
+      navMenuItem.textContent = navMenuName.value
+    })
+
+    navMenuLink.addEventListener('input',()=>{
+      navMenuItem.setAttribute('href',`${navMenuLink.value}`)
+    })
+  }
+}
+//////////////////
+//////////////////
+//////////////////
+// add and delete article item
+function articleControl(){
+  const buttonCreateArticle = document.querySelector('.message_article_add');
+  const windowContainer = document.querySelector('.message_form_content-page');
+  const articleContainer = document.querySelector('.article_container');
+
+  let currentMenu = 1;
+
+
+
+  //create button
+  buttonCreateArticle.addEventListener('click',()=>{
+    const articleBlock = document.createElement('div')
+    articleBlock.classList.add('message_text-block')
+    articleBlock.innerHTML = (0,_window_contents__WEBPACK_IMPORTED_MODULE_0__.newWindowArticleItem)(currentMenu);
+    windowContainer.append(articleBlock);
+
+    createArticleItem(currentMenu);
+    changeArticleValue(currentMenu);
+    removeArticleBatton (currentMenu);
+    
+    ++currentMenu;
+  })
+
+  //remove article buttton
+  function removeArticleBatton(currentMenu){
+    const buttonRemoveArticle = document.querySelector(`#message_article_remove-${currentMenu}`);
+
+    buttonRemoveArticle.addEventListener('click',(element)=>{
+      document.querySelector(`.article_title_${currentMenu}`).remove();
+      document.querySelector(`.article_text-block_${currentMenu}`).remove();
+
+      element.target.parentElement.remove();
+    })  
+  }
+
+  //create article in article_container
+  let articleBlock;
+  function createArticleBlock(){
+    articleBlock = document.createElement('div');
+    articleBlock.classList.add('article_container_content');
+    articleContainer.append(articleBlock);
+  };
+
+  createArticleBlock();
+
+  //create article item in article_container_content
+  function createArticleItem(currentMenu){
+    const articleTitle = document.createElement('div');
+    const articleTextBlock = document.createElement('div')
+    const articleTitleInMessage = document.querySelector(`#message_article_title_${currentMenu}`).value
+    const articleTextBlockInMessage = document.querySelector(`#message_article_text-block_${currentMenu}`).value;
+    
+    articleTitle.classList.add(`article_title_${currentMenu}`, 'article_title', 'font_article_title')
+    articleTitle.textContent = articleTitleInMessage;
+    articleBlock.append(articleTitle);
+
+    articleTextBlock.classList.add(`article_text-block_${currentMenu}`, 'article_text-block', 'font_article_text-block');
+    articleTextBlock.textContent = articleTextBlockInMessage;
+    articleBlock.append(articleTextBlock)
+
+  }
+
+  function changeArticleValue(currentMenu){
+
+    const articleTitle = document.querySelector(`.article_title_${currentMenu}`);
+    const articleTextBlock = document.querySelector(`.article_text-block_${currentMenu}`);
+    const articleTitleInMessage = document.querySelector(`#message_article_title_${currentMenu}`);
+    const articleTextBlockInMessage = document.querySelector(`#message_article_text-block_${currentMenu}`);
+
+
+    articleTitleInMessage.addEventListener('input',()=>{
+      articleTitle.textContent = articleTitleInMessage.value;
+    })
+
+    articleTextBlockInMessage.addEventListener('input',()=>{
+      articleTextBlock.textContent = articleTextBlockInMessage.value;
+    })
+  }
+}
+
 
 /***/ }),
 
@@ -17,7 +282,6 @@ throw new Error("Module parse failed: Export 'backButtonOnHeader' is not defined
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "changeBackground": () => (/* binding */ changeBackground),
@@ -159,7 +423,6 @@ function changeSlidePageStyle(direction){
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "changeStructurePage": () => (/* binding */ changeStructurePage),
@@ -228,12 +491,13 @@ function changeStructurePage(currentSlide){
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "contentWindowArticleStyle": () => (/* binding */ contentWindowArticleStyle),
 /* harmony export */   "contentWindowHeaderStyle": () => (/* binding */ contentWindowHeaderStyle),
 /* harmony export */   "contentWindowNawMenuStyle": () => (/* binding */ contentWindowNawMenuStyle),
 /* harmony export */   "contentWindowStructure": () => (/* binding */ contentWindowStructure),
+/* harmony export */   "newWindowArticleItem": () => (/* binding */ newWindowArticleItem),
 /* harmony export */   "newWindowNavMenuItem": () => (/* binding */ newWindowNavMenuItem),
 /* harmony export */   "structureWindowPage": () => (/* binding */ structureWindowPage),
 /* harmony export */   "windowMessageContentBackground": () => (/* binding */ windowMessageContentBackground),
@@ -499,6 +763,83 @@ function newWindowNavMenuItem (currentMenu){
   return WindowNavMenuItem
 }
 
+const contentWindowArticleStyle = `
+  <h2 class="message_font_header">
+  Настройка основного контента.
+  </h2>
+  <p class="message_font_text">
+  Настройте содержимое страницы.
+  </p>
+  <div class="message_form_content-page">
+    <div class="message_font_subtext">
+      Выберите цвет фона:
+    </div>
+    <div class="message_color-block">
+      <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
+      <div class="message_color-block_black" data-color="rgba(000,000,000,0.5)"></div>
+      <div class="message_color-block_blue" data-color="rgba(000,000,255,0.5)"></div>
+      <div class="message_color-block_fuchsia" data-color="rgba(255,000,255,0.5)"></div>
+      <div class="message_color-block_gray" data-color="rgba(128,128,128,0.5)"></div>
+      <div class="message_color-block_green" data-color="rgba(000,128,000,0.5)"></div>
+      <div class="message_color-block_lime" data-color="rgba(000,255,000,0.5)"></div>
+      <div class="message_color-block_maroon" data-color="rgba(128,000,000,0.5)"></div>
+      <div class="message_color-block_navy" data-color="rgba(000,000,128,0.5)"></div>
+      <div class="message_color-block_olive" data-color="rgba(128,128,000,0.5)"></div>
+      <div class="message_color-block_purple" data-color="rgba(128,000,128,0.5)"></div>
+      <div class="message_color-block_red" data-color="rgba(255,000,000,0.5)"></div>
+      <div class="message_color-block_silver" data-color="rgba(192,192,192,0.5)"></div>
+      <div class="message_color-block_teal" data-color="rgba(000,128,128,0.5)"></div>
+      <div class="message_color-block_white" data-color="rgba(255,255,255,0.5)"></div>
+      <div class="message_color-block_yellow" data-color="rgba(255,255,000,0.5)"></div>
+    </div>
+    <div class="message_font_subtext">
+      Выберите прозрачность фона:
+    </div>
+    <div class="message_color_opacity">
+      <input type="range" min="0" max="100" name="message_color_opacity-range" id="message_color_opacity-range">
+      <div class="message_color_opacity_text-block">
+        <p class="message_font_subtext">или введите значение:</p>
+        <input type="text" name="message_color_opacity-range_text" id="message_color_opacity-range_text" class="message_input_text message_font_subtext">
+      </div>
+    </div>
+    <div class="message_font_subtext">
+      Введите заголовок и содержимое статьи:
+    </div>
+
+    <button class="message_article_add message_article_button message_font_subtext ">Добавить статью</button>
+
+  </div>
+
+
+
+    <p class="message_font_dialog">
+    Для продолжения нажмите на кнопку
+    </p>
+    <div class="message_button_container">
+    <button class="message_button message_button_font button_back">Назад</button>
+    <button class="message_button message_button_font button_next ">Далее</button>
+  </div>
+`;
+
+function newWindowArticleItem (currentMenu){
+
+  const WindowArticleItem =`
+  <button class="message_article_remove message_article_button" id="message_article_remove-${currentMenu}">&#10006</button>
+
+  <p class="message_font_subtext">Заголовок статьи ${currentMenu}:</p>
+  
+  <input type="text" name="message_article_title_${currentMenu}" id="message_article_title_${currentMenu}" class="message_input_text message_font_subtext" value="Заголовок ${currentMenu}">
+
+  <p class="message_font_subtext">Текст статьи ${currentMenu}:</p>
+
+  <textarea name="message_article_text-block_${currentMenu}" id="message_article_text-block_${currentMenu}" class="message_input_text message_input_textarea message_font_subtext">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis sapien elit, sit amet tristique justo auctor sit amet. Maecenas rutrum blandit dolor, sed malesuada risus mattis vitae. Nunc aliquam molestie ullamcorper. Donec venenatis ut sem ac euismod. Sed mollis pharetra sagittis. Morbi aliquam vulputate massa, sed lacinia ante iaculis quis. Duis bibendum id tellus eu blandit. Cras sollicitudin tortor gravida tempus scelerisque. Praesent non enim laoreet, feugiat lacus sed, placerat justo. Nullam sit amet urna diam. Fusce elementum ornare metus sit amet gravida. Fusce commodo cursus orci at rhoncus.
+
+  Nullam sit amet diam eget enim suscipit porta sit amet vel mauris. Suspendisse nunc nulla, condimentum id semper ac, sagittis sed risus. Fusce hendrerit varius augue eget efficitur. Mauris accumsan nisi non velit tristique dignissim. Duis venenatis convallis sodales. Cras at arcu imperdiet erat aliquet venenatis hendrerit ultricies tellus. Integer commodo nulla eu quam egestas, eu tincidunt ipsum porta. Sed rutrum finibus elit, sit amet vulputate nulla. Morbi iaculis risus at enim aliquam, ut semper ex pellentesque. Praesent in velit quis nisl sagittis rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </textarea>
+`
+  return WindowArticleItem
+}
 
 
 
@@ -561,9 +902,8 @@ function newWindowNavMenuItem (currentMenu){
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!********************!*\
   !*** ./js/main.js ***!
   \********************/
@@ -641,6 +981,13 @@ document.addEventListener('DOMContentLoaded',() => {
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.nav_container');
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.navMenuControl)();
           break;
+
+        case 5:
+          currentWindow=6
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowArticleStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.article_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.articleControl)()
+          break;
       }
     });
   }
@@ -673,7 +1020,7 @@ document.addEventListener('DOMContentLoaded',() => {
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentBackground);
           console.log(currentWindow)
           ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,5);
-          (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground) ()
+          (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground)()
           
           break;
         

@@ -326,8 +326,19 @@ $message_width:400px;
       border-radius: 5px;
     }
 
+    .message_input_textarea{
+      resize: vertical;
+      text-align: start;
+
+      width: 250px;
+      min-height: 200px;
+      max-height: 100%;
+
+      transition: none;
+    }
+
     //nav menu button
-    .message_nav-menu_add-menu{
+    .message_nav-menu_add-menu, .message_article_add{
       padding: 10px;
       margin-right: 0;
 
@@ -339,7 +350,7 @@ $message_width:400px;
     }    
 
 
-    .message_nav_button{
+    .message_nav_button, .message_article_button{
       border:1px solid black;
       border-radius: 5px;
       background-color: rgba(0, 0, 0, 0.1);
@@ -347,22 +358,22 @@ $message_width:400px;
       transition: 0.1s;
       cursor: cell;
     }
-    .message_nav_button:hover{
+    .message_nav_button:hover, .message_article_button:hover{
       background-color: rgba(0, 0, 0, 0.3);
     }
-    .message_nav_button:active{
+    .message_nav_button:active, .message_article_button:active{
       background-color: rgba(255, 115, 0, 0.774);
       box-shadow: 0px 0px 0px;
       transform:translateY(3px);
     }
-    .message_nav-menu_text-block{
+    .message_text-block{
       position: relative;
       padding: 20px;
       border: 1px solid black;
       border-radius: 10px;
       margin-bottom: 20px;
 
-      .message_nav-menu_remove{
+      .message_nav-menu_remove, .message_article_remove{
         position: absolute;
         right: 0;
         top: 0;

@@ -258,5 +258,82 @@ function newWindowNavMenuItem (currentMenu){
   return WindowNavMenuItem
 }
 
+const contentWindowArticleStyle = `
+  <h2 class="message_font_header">
+  Настройка основного контента.
+  </h2>
+  <p class="message_font_text">
+  Настройте содержимое страницы.
+  </p>
+  <div class="message_form_content-page">
+    <div class="message_font_subtext">
+      Выберите цвет фона:
+    </div>
+    <div class="message_color-block">
+      <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
+      <div class="message_color-block_black" data-color="rgba(000,000,000,0.5)"></div>
+      <div class="message_color-block_blue" data-color="rgba(000,000,255,0.5)"></div>
+      <div class="message_color-block_fuchsia" data-color="rgba(255,000,255,0.5)"></div>
+      <div class="message_color-block_gray" data-color="rgba(128,128,128,0.5)"></div>
+      <div class="message_color-block_green" data-color="rgba(000,128,000,0.5)"></div>
+      <div class="message_color-block_lime" data-color="rgba(000,255,000,0.5)"></div>
+      <div class="message_color-block_maroon" data-color="rgba(128,000,000,0.5)"></div>
+      <div class="message_color-block_navy" data-color="rgba(000,000,128,0.5)"></div>
+      <div class="message_color-block_olive" data-color="rgba(128,128,000,0.5)"></div>
+      <div class="message_color-block_purple" data-color="rgba(128,000,128,0.5)"></div>
+      <div class="message_color-block_red" data-color="rgba(255,000,000,0.5)"></div>
+      <div class="message_color-block_silver" data-color="rgba(192,192,192,0.5)"></div>
+      <div class="message_color-block_teal" data-color="rgba(000,128,128,0.5)"></div>
+      <div class="message_color-block_white" data-color="rgba(255,255,255,0.5)"></div>
+      <div class="message_color-block_yellow" data-color="rgba(255,255,000,0.5)"></div>
+    </div>
+    <div class="message_font_subtext">
+      Выберите прозрачность фона:
+    </div>
+    <div class="message_color_opacity">
+      <input type="range" min="0" max="100" name="message_color_opacity-range" id="message_color_opacity-range">
+      <div class="message_color_opacity_text-block">
+        <p class="message_font_subtext">или введите значение:</p>
+        <input type="text" name="message_color_opacity-range_text" id="message_color_opacity-range_text" class="message_input_text message_font_subtext">
+      </div>
+    </div>
+    <div class="message_font_subtext">
+      Введите заголовок и содержимое статьи:
+    </div>
 
-export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage,contentWindowHeaderStyle,contentWindowNawMenuStyle,newWindowNavMenuItem};
+    <button class="message_article_add message_article_button message_font_subtext ">Добавить статью</button>
+
+  </div>
+
+
+
+    <p class="message_font_dialog">
+    Для продолжения нажмите на кнопку
+    </p>
+    <div class="message_button_container">
+    <button class="message_button message_button_font button_back">Назад</button>
+    <button class="message_button message_button_font button_next ">Далее</button>
+  </div>
+`;
+
+function newWindowArticleItem (currentMenu){
+
+  const WindowArticleItem =`
+  <button class="message_article_remove message_article_button" id="message_article_remove-${currentMenu}">&#10006</button>
+
+  <p class="message_font_subtext">Заголовок статьи ${currentMenu}:</p>
+  
+  <input type="text" name="message_article_title_${currentMenu}" id="message_article_title_${currentMenu}" class="message_input_text message_font_subtext" value="Заголовок ${currentMenu}">
+
+  <p class="message_font_subtext">Текст статьи ${currentMenu}:</p>
+
+  <textarea name="message_article_text-block_${currentMenu}" id="message_article_text-block_${currentMenu}" class="message_input_text message_input_textarea message_font_subtext">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mollis sapien elit, sit amet tristique justo auctor sit amet. Maecenas rutrum blandit dolor, sed malesuada risus mattis vitae. Nunc aliquam molestie ullamcorper. Donec venenatis ut sem ac euismod. Sed mollis pharetra sagittis. Morbi aliquam vulputate massa, sed lacinia ante iaculis quis. Duis bibendum id tellus eu blandit. Cras sollicitudin tortor gravida tempus scelerisque. Praesent non enim laoreet, feugiat lacus sed, placerat justo. Nullam sit amet urna diam. Fusce elementum ornare metus sit amet gravida. Fusce commodo cursus orci at rhoncus.
+
+  Nullam sit amet diam eget enim suscipit porta sit amet vel mauris. Suspendisse nunc nulla, condimentum id semper ac, sagittis sed risus. Fusce hendrerit varius augue eget efficitur. Mauris accumsan nisi non velit tristique dignissim. Duis venenatis convallis sodales. Cras at arcu imperdiet erat aliquet venenatis hendrerit ultricies tellus. Integer commodo nulla eu quam egestas, eu tincidunt ipsum porta. Sed rutrum finibus elit, sit amet vulputate nulla. Morbi iaculis risus at enim aliquam, ut semper ex pellentesque. Praesent in velit quis nisl sagittis rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  </textarea>
+`
+  return WindowArticleItem
+}
+
+export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage,contentWindowHeaderStyle,contentWindowNawMenuStyle,newWindowNavMenuItem,contentWindowArticleStyle,newWindowArticleItem};

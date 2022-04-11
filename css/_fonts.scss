@@ -56,3 +56,18 @@
   font-style: italic;
   margin: 0;
 }
+
+.font_article_title{
+  @include fonts;
+  color: black;
+  font-size: 40px;
+  font-weight: 900;
+  font-style: italic;
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.font_article_text-block{
+  @include fonts;
+  margin: 0;
+}
