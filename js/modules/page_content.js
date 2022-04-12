@@ -1,6 +1,6 @@
 'use strict'
 
-import {newWindowNavMenuItem,newWindowArticleItem} from './window_contents';
+import {newWindowNavMenuItem,newWindowArticleItem,contentFooter} from './window_contents';
 
 let container;
 
@@ -86,7 +86,7 @@ function createHeaderText(){
 
   headerText.classList.add('header_content','header_font-text');
   headerContainer.append(headerText);
-  headerText.textContent = 'Заголовок';
+  headerText.textContent = messageHeaderText.value;
 
 
   messageHeaderText.addEventListener('input',()=>{
@@ -171,9 +171,7 @@ function navMenuControl(){
     })
   }
 }
-//////////////////
-//////////////////
-//////////////////
+
 // add and delete article item
 function articleControl(){
   const buttonCreateArticle = document.querySelector('.message_article_add');
@@ -254,4 +252,42 @@ function articleControl(){
     })
   }
 }
-export {changeBackgroundColor,createHeaderText,navMenuControl,articleControl};
+
+// create footer text()
+function createFooterText(){
+  const footerContainer = document.querySelector('.footer_container');
+
+  footerContainer.innerHTML = contentFooter
+
+  const messageFooterMail = document.querySelector('#message_footer_mail');
+  const messageFooterPhone = document.querySelector('#message_footer_phone-number');
+  const footerPhoneNumberContainer = document.querySelector('.footer_phone-number_container');
+  const footerMailContainer = document.querySelector('.footer_mail_container');
+
+
+
+  const phoneNumber = document.createElement('div');
+
+  phoneNumber.classList.add('footer_font_text');
+  footerPhoneNumberContainer.append(phoneNumber);
+  phoneNumber.textContent = messageFooterPhone.value;
+
+  const mail = document.createElement('div');
+
+  mail.classList.add('footer_font_text');
+  footerMailContainer.append(mail);
+  mail.textContent = messageFooterMail.value;
+
+
+
+  messageFooterPhone.addEventListener('input',()=>{
+    phoneNumber.textContent = messageFooterPhone.value
+  })
+
+  messageFooterMail.addEventListener('input',()=>{
+    mail.textContent = messageFooterMail.value
+  })
+}
+
+
+export {changeBackgroundColor,createHeaderText,navMenuControl,articleControl,createFooterText};

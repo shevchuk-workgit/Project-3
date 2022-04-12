@@ -25,11 +25,19 @@ header{
   }
 }
 
-.footer_container{
+footer{
   padding: 20px;
   .temporary-light{
-    height: 100px;
     @include border-light;
+  }
+  .footer_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 100px;
+    padding: 20px 50px;
   }
 }
 

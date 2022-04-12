@@ -176,7 +176,7 @@ const contentWindowHeaderStyle = `
   <div class="message_font_subtext">
     Введите текст заголовка:
   </div>
-  <input type="text" name="message_change-header-text" id="message_change-header-text" class="message_input_text message_font_subtext">
+  <input type="text" name="message_change-header-text" id="message_change-header-text" class="message_input_text message_font_subtext" value="Заголовок">
   </div >
   <p class="message_font_dialog">
   Для продолжения нажмите на кнопку
@@ -336,4 +336,100 @@ function newWindowArticleItem (currentMenu){
   return WindowArticleItem
 }
 
-export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage,contentWindowHeaderStyle,contentWindowNawMenuStyle,newWindowNavMenuItem,contentWindowArticleStyle,newWindowArticleItem};
+const contentWindowfooterStyle = `
+  <h2 class="message_font_header">
+  Настройка футера сайта.
+  </h2>
+  <p class="message_font_text">
+  Настройте футер страницы.
+  </p>
+  <div class="message_form_content-page">
+    <div class="message_font_subtext">
+      Выберите цвет фона:
+    </div>
+    <div class="message_color-block">
+      <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
+      <div class="message_color-block_black" data-color="rgba(000,000,000,0.5)"></div>
+      <div class="message_color-block_blue" data-color="rgba(000,000,255,0.5)"></div>
+      <div class="message_color-block_fuchsia" data-color="rgba(255,000,255,0.5)"></div>
+      <div class="message_color-block_gray" data-color="rgba(128,128,128,0.5)"></div>
+      <div class="message_color-block_green" data-color="rgba(000,128,000,0.5)"></div>
+      <div class="message_color-block_lime" data-color="rgba(000,255,000,0.5)"></div>
+      <div class="message_color-block_maroon" data-color="rgba(128,000,000,0.5)"></div>
+      <div class="message_color-block_navy" data-color="rgba(000,000,128,0.5)"></div>
+      <div class="message_color-block_olive" data-color="rgba(128,128,000,0.5)"></div>
+      <div class="message_color-block_purple" data-color="rgba(128,000,128,0.5)"></div>
+      <div class="message_color-block_red" data-color="rgba(255,000,000,0.5)"></div>
+      <div class="message_color-block_silver" data-color="rgba(192,192,192,0.5)"></div>
+      <div class="message_color-block_teal" data-color="rgba(000,128,128,0.5)"></div>
+      <div class="message_color-block_white" data-color="rgba(255,255,255,0.5)"></div>
+      <div class="message_color-block_yellow" data-color="rgba(255,255,000,0.5)"></div>
+    </div>
+    <div class="message_font_subtext">
+      Выберите прозрачность фона:
+    </div>
+    <div class="message_color_opacity">
+      <input type="range" min="0" max="100" name="message_color_opacity-range" id="message_color_opacity-range">
+      <div class="message_color_opacity_text-block">
+        <p class="message_font_subtext">или введите значение:</p>
+        <input type="text" name="message_color_opacity-range_text" id="message_color_opacity-range_text" class="message_input_text message_font_subtext">
+      </div>
+    </div>
+
+    <div class="message_font_subtext">
+      Введите свою электронную почту для связи:
+    </div>
+    <input type="text" name="message_footer_mail" id="message_footer_mail" class="message_input_text message_font_subtext" value="info@gmail.com">
+
+    <div class="message_font_subtext">
+      Введите свой номер телефона:
+    </div>
+    <input type="text" name="message_footer_phone-number" id="message_footer_phone-number" class="message_input_text message_font_subtext" value="+7-495-644-1400">
+    
+
+  </div>
+
+
+
+    <p class="message_font_dialog">
+    Для продолжения нажмите на кнопку
+    </p>
+    <div class="message_button_container">
+    <button class="message_button message_button_font button_back">Назад</button>
+    <button class="message_button message_button_font button_next ">Далее</button>
+  </div>
+`;
+
+  const contentFooter = `
+    <div class="footer_phone-number_container">
+      <p class="footer_font_text">Наш телефон для связи:</P>
+    </div>
+    <div class="footer_mail_container">
+      <p class="footer_font_text">Наша почта для связи:</P>
+    </div>
+  `
+
+  const windowMessageContentBye = `
+<h2 class="message_font_header">
+  Спасибо что воспользовались нашим конструктором!
+</h2>
+<p class="message_font_text">
+  Для того чтобы разместить ваш новый сайт в интернете, пожалуйста позвоните нам.
+</p>
+<p class="message_font_text">
+  8-800-555-35-35.
+</p>
+<p class="message_font_subtext">
+  или мы самостоятельно с вами свяжемся по контактам что вы указывали ранее.
+</p>
+
+<p class="message_font_dialog">
+  Для продолжения нажмите на кнопку
+</p>
+<div class="message_button_container">
+  <button class="message_button message_button_font button_back">Назад</button>
+  <button class="message_button message_button_font button_next ">Готово!</button>
+</div>`;
+
+
+export {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,structureWindowPage,contentWindowHeaderStyle,contentWindowNawMenuStyle,newWindowNavMenuItem,contentWindowArticleStyle,newWindowArticleItem,contentWindowfooterStyle,contentFooter,windowMessageContentBye};

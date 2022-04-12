@@ -1,9 +1,9 @@
 'use strict'
 
-import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,contentWindowHeaderStyle,contentWindowNawMenuStyle,contentWindowArticleStyle} from "./modules/window_contents";
+import {windowMessageContentHello, windowMessageContentBackground,contentWindowStructure,contentWindowHeaderStyle,contentWindowNawMenuStyle,contentWindowArticleStyle,contentWindowfooterStyle,windowMessageContentBye} from "./modules/window_contents";
 import {slider,changeBackground} from './modules/slider';
 import {createStructurePage,changeStructurePage} from './modules/structure_page';
-import {changeBackgroundColor,createHeaderText,navMenuControl,articleControl} from './modules/page_content';
+import {changeBackgroundColor,createHeaderText,navMenuControl,articleControl,createFooterText} from './modules/page_content';
 
 
 document.addEventListener('DOMContentLoaded',() => {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded',() => {
           createWindowMessage(windowMessageContentBackground);
           slider(currentWindow,5);
           changeBackground ()
-          break;
+        break;
 
         case 2:
           currentWindow=3;
@@ -52,28 +52,42 @@ document.addEventListener('DOMContentLoaded',() => {
           slider(currentWindow,3);
           createStructurePage();
           changeStructurePage(1);
-          break;
+        break;
 
         case 3:
           currentWindow=4
           createWindowMessage(contentWindowHeaderStyle);
           changeBackgroundColor('.header_container');
           createHeaderText();
-          break;
+        break;
 
         case 4:
           currentWindow=5
           createWindowMessage(contentWindowNawMenuStyle);
           changeBackgroundColor('.nav_container');
           navMenuControl();
-          break;
+        break;
 
         case 5:
           currentWindow=6
           createWindowMessage(contentWindowArticleStyle);
           changeBackgroundColor('.article_container');
           articleControl()
-          break;
+        break;
+
+        case 6:
+          currentWindow=7
+          createWindowMessage(contentWindowfooterStyle);
+          changeBackgroundColor('.footer_container');
+          createFooterText()
+        break;
+
+        case 7:
+          currentWindow=8
+          createWindowMessage(windowMessageContentBye);
+          
+
+        break;
       }
     });
   }
@@ -89,14 +103,14 @@ document.addEventListener('DOMContentLoaded',() => {
       switch(currentWindow){
         case 1:
           buttonBack.style.backgroundColor = '#ccc';
-          break;
+        break;
         case 2:
           currentWindow=1
           document.querySelector('.message_container').remove();
           createWindowMessage(windowMessageContentHello)
           buttonBack.style.backgroundColor = '#ccc';
           
-          break;
+        break;
         case 3:
           currentWindow=2;
           document.querySelector('.message_container').remove();
@@ -108,9 +122,78 @@ document.addEventListener('DOMContentLoaded',() => {
           slider(currentWindow,5);
           changeBackground()
           
-          break;
-        
+        break;
 
+        case 4:
+          currentWindow=3;
+          document.querySelector('.message_container').remove()
+          document.querySelector('header').innerHTML='';
+          document.querySelector('main').innerHTML='';
+          document.querySelector('footer').innerHTML='';
+
+          createWindowMessage(contentWindowStructure);
+          slider(currentWindow,3);
+          createStructurePage();
+          changeStructurePage(1);
+          
+        break;
+        
+        case 5:
+          currentWindow=4;
+          document.querySelector('.message_container').remove();
+
+          document.querySelector('.nav_container').innerHTML='';
+          document.querySelector('.nav_container').classList.add('temporary-light');
+          document.querySelector('.nav_container').removeAttribute('style');
+          document.querySelector('.header_content').remove();
+
+          createWindowMessage(contentWindowHeaderStyle);
+          changeBackgroundColor('.header_container');
+          createHeaderText();
+          
+        break;
+
+        case 6:
+          currentWindow=5;
+          document.querySelector('.message_container').remove();
+
+          document.querySelector('.article_container').innerHTML='';
+          document.querySelector('.article_container').classList.add('temporary-light');
+          document.querySelector('.article_container').removeAttribute('style');
+          document.querySelector('.nav_container_menu-block').remove();
+
+          createWindowMessage(contentWindowNawMenuStyle);
+          changeBackgroundColor('.nav_container');
+          navMenuControl();
+          
+        break;
+
+        case 7:
+          currentWindow=6;
+          document.querySelector('.message_container').remove();
+
+          document.querySelector('.footer_container').innerHTML='';
+          document.querySelector('.footer_container').classList.add('temporary-light');
+          document.querySelector('.footer_container').removeAttribute('style');
+          document.querySelector('.article_container_content').remove();
+
+          createWindowMessage(contentWindowArticleStyle);
+          changeBackgroundColor('.article_container');
+          articleControl()
+          
+        break;
+
+        case 8:
+          currentWindow=7;
+          document.querySelector('.message_container').remove();
+
+          createWindowMessage(contentWindowfooterStyle);
+          changeBackgroundColor('.footer_container');
+          createFooterText()
+          
+        break;
+
+        
       }
     })
 

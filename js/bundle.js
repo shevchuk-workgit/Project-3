@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "articleControl": () => (/* binding */ articleControl),
 /* harmony export */   "changeBackgroundColor": () => (/* binding */ changeBackgroundColor),
+/* harmony export */   "createFooterText": () => (/* binding */ createFooterText),
 /* harmony export */   "createHeaderText": () => (/* binding */ createHeaderText),
 /* harmony export */   "navMenuControl": () => (/* binding */ navMenuControl)
 /* harmony export */ });
@@ -104,7 +105,7 @@ function createHeaderText(){
 
   headerText.classList.add('header_content','header_font-text');
   headerContainer.append(headerText);
-  headerText.textContent = 'Заголовок';
+  headerText.textContent = messageHeaderText.value;
 
 
   messageHeaderText.addEventListener('input',()=>{
@@ -189,9 +190,7 @@ function navMenuControl(){
     })
   }
 }
-//////////////////
-//////////////////
-//////////////////
+
 // add and delete article item
 function articleControl(){
   const buttonCreateArticle = document.querySelector('.message_article_add');
@@ -272,6 +271,44 @@ function articleControl(){
     })
   }
 }
+
+// create footer text()
+function createFooterText(){
+  const footerContainer = document.querySelector('.footer_container');
+
+  footerContainer.innerHTML = _window_contents__WEBPACK_IMPORTED_MODULE_0__.contentFooter
+
+  const messageFooterMail = document.querySelector('#message_footer_mail');
+  const messageFooterPhone = document.querySelector('#message_footer_phone-number');
+  const footerPhoneNumberContainer = document.querySelector('.footer_phone-number_container');
+  const footerMailContainer = document.querySelector('.footer_mail_container');
+
+
+
+  const phoneNumber = document.createElement('div');
+
+  phoneNumber.classList.add('footer_font_text');
+  footerPhoneNumberContainer.append(phoneNumber);
+  phoneNumber.textContent = messageFooterPhone.value;
+
+  const mail = document.createElement('div');
+
+  mail.classList.add('footer_font_text');
+  footerMailContainer.append(mail);
+  mail.textContent = messageFooterMail.value;
+
+
+
+  messageFooterPhone.addEventListener('input',()=>{
+    phoneNumber.textContent = messageFooterPhone.value
+  })
+
+  messageFooterMail.addEventListener('input',()=>{
+    mail.textContent = messageFooterMail.value
+  })
+}
+
+
 
 
 /***/ }),
@@ -432,7 +469,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const header = document.querySelector('header');
 const main = document.querySelector('.main_container');
-const footer = document.querySelector('.footer_container');
+const footer = document.querySelector('footer');
 
 function createStructurePage(){
 
@@ -441,7 +478,7 @@ function createStructurePage(){
   header.prepend(header_light);
 
   const footer_light = document.createElement('div');
-  footer_light.classList.add('temporary-light');
+  footer_light.classList.add('temporary-light','footer_container');
   footer.prepend(footer_light);
   
   const main_nav = document.createElement('nav');
@@ -493,14 +530,17 @@ function changeStructurePage(currentSlide){
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "contentFooter": () => (/* binding */ contentFooter),
 /* harmony export */   "contentWindowArticleStyle": () => (/* binding */ contentWindowArticleStyle),
 /* harmony export */   "contentWindowHeaderStyle": () => (/* binding */ contentWindowHeaderStyle),
 /* harmony export */   "contentWindowNawMenuStyle": () => (/* binding */ contentWindowNawMenuStyle),
 /* harmony export */   "contentWindowStructure": () => (/* binding */ contentWindowStructure),
+/* harmony export */   "contentWindowfooterStyle": () => (/* binding */ contentWindowfooterStyle),
 /* harmony export */   "newWindowArticleItem": () => (/* binding */ newWindowArticleItem),
 /* harmony export */   "newWindowNavMenuItem": () => (/* binding */ newWindowNavMenuItem),
 /* harmony export */   "structureWindowPage": () => (/* binding */ structureWindowPage),
 /* harmony export */   "windowMessageContentBackground": () => (/* binding */ windowMessageContentBackground),
+/* harmony export */   "windowMessageContentBye": () => (/* binding */ windowMessageContentBye),
 /* harmony export */   "windowMessageContentHello": () => (/* binding */ windowMessageContentHello)
 /* harmony export */ });
  
@@ -681,7 +721,7 @@ const contentWindowHeaderStyle = `
   <div class="message_font_subtext">
     Введите текст заголовка:
   </div>
-  <input type="text" name="message_change-header-text" id="message_change-header-text" class="message_input_text message_font_subtext">
+  <input type="text" name="message_change-header-text" id="message_change-header-text" class="message_input_text message_font_subtext" value="Заголовок">
   </div >
   <p class="message_font_dialog">
   Для продолжения нажмите на кнопку
@@ -841,6 +881,102 @@ function newWindowArticleItem (currentMenu){
   return WindowArticleItem
 }
 
+const contentWindowfooterStyle = `
+  <h2 class="message_font_header">
+  Настройка футера сайта.
+  </h2>
+  <p class="message_font_text">
+  Настройте футер страницы.
+  </p>
+  <div class="message_form_content-page">
+    <div class="message_font_subtext">
+      Выберите цвет фона:
+    </div>
+    <div class="message_color-block">
+      <div class="message_color-block_aqua" data-color="rgba(000,255,255,0.5)"></div>
+      <div class="message_color-block_black" data-color="rgba(000,000,000,0.5)"></div>
+      <div class="message_color-block_blue" data-color="rgba(000,000,255,0.5)"></div>
+      <div class="message_color-block_fuchsia" data-color="rgba(255,000,255,0.5)"></div>
+      <div class="message_color-block_gray" data-color="rgba(128,128,128,0.5)"></div>
+      <div class="message_color-block_green" data-color="rgba(000,128,000,0.5)"></div>
+      <div class="message_color-block_lime" data-color="rgba(000,255,000,0.5)"></div>
+      <div class="message_color-block_maroon" data-color="rgba(128,000,000,0.5)"></div>
+      <div class="message_color-block_navy" data-color="rgba(000,000,128,0.5)"></div>
+      <div class="message_color-block_olive" data-color="rgba(128,128,000,0.5)"></div>
+      <div class="message_color-block_purple" data-color="rgba(128,000,128,0.5)"></div>
+      <div class="message_color-block_red" data-color="rgba(255,000,000,0.5)"></div>
+      <div class="message_color-block_silver" data-color="rgba(192,192,192,0.5)"></div>
+      <div class="message_color-block_teal" data-color="rgba(000,128,128,0.5)"></div>
+      <div class="message_color-block_white" data-color="rgba(255,255,255,0.5)"></div>
+      <div class="message_color-block_yellow" data-color="rgba(255,255,000,0.5)"></div>
+    </div>
+    <div class="message_font_subtext">
+      Выберите прозрачность фона:
+    </div>
+    <div class="message_color_opacity">
+      <input type="range" min="0" max="100" name="message_color_opacity-range" id="message_color_opacity-range">
+      <div class="message_color_opacity_text-block">
+        <p class="message_font_subtext">или введите значение:</p>
+        <input type="text" name="message_color_opacity-range_text" id="message_color_opacity-range_text" class="message_input_text message_font_subtext">
+      </div>
+    </div>
+
+    <div class="message_font_subtext">
+      Введите свою электронную почту для связи:
+    </div>
+    <input type="text" name="message_footer_mail" id="message_footer_mail" class="message_input_text message_font_subtext" value="info@gmail.com">
+
+    <div class="message_font_subtext">
+      Введите свой номер телефона:
+    </div>
+    <input type="text" name="message_footer_phone-number" id="message_footer_phone-number" class="message_input_text message_font_subtext" value="+7-495-644-1400">
+    
+
+  </div>
+
+
+
+    <p class="message_font_dialog">
+    Для продолжения нажмите на кнопку
+    </p>
+    <div class="message_button_container">
+    <button class="message_button message_button_font button_back">Назад</button>
+    <button class="message_button message_button_font button_next ">Далее</button>
+  </div>
+`;
+
+  const contentFooter = `
+    <div class="footer_phone-number_container">
+      <p class="footer_font_text">Наш телефон для связи:</P>
+    </div>
+    <div class="footer_mail_container">
+      <p class="footer_font_text">Наша почта для связи:</P>
+    </div>
+  `
+
+  const windowMessageContentBye = `
+<h2 class="message_font_header">
+  Спасибо что воспользовались нашим конструктором!
+</h2>
+<p class="message_font_text">
+  Для того чтобы разместить ваш новый сайт в интернете, пожалуйста позвоните нам.
+</p>
+<p class="message_font_text">
+  8-800-555-35-35.
+</p>
+<p class="message_font_subtext">
+  или мы самостоятельно с вами свяжемся по контактам что вы указывали ранее.
+</p>
+
+<p class="message_font_dialog">
+  Для продолжения нажмите на кнопку
+</p>
+<div class="message_button_container">
+  <button class="message_button message_button_font button_back">Назад</button>
+  <button class="message_button message_button_font button_next ">Готово!</button>
+</div>`;
+
+
 
 
 /***/ })
@@ -958,7 +1094,7 @@ document.addEventListener('DOMContentLoaded',() => {
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentBackground);
           (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,5);
           (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground) ()
-          break;
+        break;
 
         case 2:
           currentWindow=3;
@@ -966,28 +1102,42 @@ document.addEventListener('DOMContentLoaded',() => {
           (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,3);
           (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.createStructurePage)();
           (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.changeStructurePage)(1);
-          break;
+        break;
 
         case 3:
           currentWindow=4
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowHeaderStyle);
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.header_container');
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.createHeaderText)();
-          break;
+        break;
 
         case 4:
           currentWindow=5
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowNawMenuStyle);
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.nav_container');
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.navMenuControl)();
-          break;
+        break;
 
         case 5:
           currentWindow=6
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowArticleStyle);
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.article_container');
           (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.articleControl)()
-          break;
+        break;
+
+        case 6:
+          currentWindow=7
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowfooterStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.footer_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.createFooterText)()
+        break;
+
+        case 7:
+          currentWindow=8
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentBye);
+          
+
+        break;
       }
     });
   }
@@ -1003,14 +1153,14 @@ document.addEventListener('DOMContentLoaded',() => {
       switch(currentWindow){
         case 1:
           buttonBack.style.backgroundColor = '#ccc';
-          break;
+        break;
         case 2:
           currentWindow=1
           document.querySelector('.message_container').remove();
           createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.windowMessageContentHello)
           buttonBack.style.backgroundColor = '#ccc';
           
-          break;
+        break;
         case 3:
           currentWindow=2;
           document.querySelector('.message_container').remove();
@@ -1022,9 +1172,78 @@ document.addEventListener('DOMContentLoaded',() => {
           ;(0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,5);
           (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.changeBackground)()
           
-          break;
-        
+        break;
 
+        case 4:
+          currentWindow=3;
+          document.querySelector('.message_container').remove()
+          document.querySelector('header').innerHTML='';
+          document.querySelector('main').innerHTML='';
+          document.querySelector('footer').innerHTML='';
+
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowStructure);
+          (0,_modules_slider__WEBPACK_IMPORTED_MODULE_1__.slider)(currentWindow,3);
+          (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.createStructurePage)();
+          (0,_modules_structure_page__WEBPACK_IMPORTED_MODULE_2__.changeStructurePage)(1);
+          
+        break;
+        
+        case 5:
+          currentWindow=4;
+          document.querySelector('.message_container').remove();
+
+          document.querySelector('.nav_container').innerHTML='';
+          document.querySelector('.nav_container').classList.add('temporary-light');
+          document.querySelector('.nav_container').removeAttribute('style');
+          document.querySelector('.header_content').remove();
+
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowHeaderStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.header_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.createHeaderText)();
+          
+        break;
+
+        case 6:
+          currentWindow=5;
+          document.querySelector('.message_container').remove();
+
+          document.querySelector('.article_container').innerHTML='';
+          document.querySelector('.article_container').classList.add('temporary-light');
+          document.querySelector('.article_container').removeAttribute('style');
+          document.querySelector('.nav_container_menu-block').remove();
+
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowNawMenuStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.nav_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.navMenuControl)();
+          
+        break;
+
+        case 7:
+          currentWindow=6;
+          document.querySelector('.message_container').remove();
+
+          document.querySelector('.footer_container').innerHTML='';
+          document.querySelector('.footer_container').classList.add('temporary-light');
+          document.querySelector('.footer_container').removeAttribute('style');
+          document.querySelector('.article_container_content').remove();
+
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowArticleStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.article_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.articleControl)()
+          
+        break;
+
+        case 8:
+          currentWindow=7;
+          document.querySelector('.message_container').remove();
+
+          createWindowMessage(_modules_window_contents__WEBPACK_IMPORTED_MODULE_0__.contentWindowfooterStyle);
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.changeBackgroundColor)('.footer_container');
+          (0,_modules_page_content__WEBPACK_IMPORTED_MODULE_3__.createFooterText)()
+          
+        break;
+
+        
       }
     })
 

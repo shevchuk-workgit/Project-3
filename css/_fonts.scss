@@ -63,11 +63,17 @@
   font-size: 40px;
   font-weight: 900;
   font-style: italic;
-  margin: 0;
   margin-bottom: 40px;
 }
 
 .font_article_text-block{
   @include fonts;
-  margin: 0;
+}
+
+.footer_font_text{
+  @include fonts;
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 5px;
+  
 }

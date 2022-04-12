@@ -2,7 +2,7 @@
 
 const header = document.querySelector('header');
 const main = document.querySelector('.main_container');
-const footer = document.querySelector('.footer_container');
+const footer = document.querySelector('footer');
 
 function createStructurePage(){
 
@@ -11,7 +11,7 @@ function createStructurePage(){
   header.prepend(header_light);
 
   const footer_light = document.createElement('div');
-  footer_light.classList.add('temporary-light');
+  footer_light.classList.add('temporary-light','footer_container');
   footer.prepend(footer_light);
   
   const main_nav = document.createElement('nav');
