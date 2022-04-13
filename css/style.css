@@ -862,6 +862,8 @@ footer .footer_container {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.95);
   min-height: 450px;
+  -webkit-box-shadow: 0px 0px 5px black;
+          box-shadow: 0px 0px 5px black;
 }
 
 .main_container_variant-2 .article_container .article_container_content .article_text-block {
@@ -956,6 +958,8 @@ footer .footer_container {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.95);
   min-height: 600px;
+  -webkit-box-shadow: 0px 0px 5px black;
+          box-shadow: 0px 0px 5px black;
 }
 
 .main_container_variant-3 .article_container .article_container_content .article_text-block {
