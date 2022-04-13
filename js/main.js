@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded',() => {
 
     mainContainer.prepend(message);
     createNewWindowMessage();
-    returnPreviousWindowMessage ();
+    
 
-    if(content===windowMessageContentHello){
-      const buttonBack = document.querySelector('.button_back').style.backgroundColor = '#ccc';
+    if(content!==windowMessageContentHello){
+      returnPreviousWindowMessage ();
     }
   };
 
@@ -97,13 +97,12 @@ document.addEventListener('DOMContentLoaded',() => {
 
     const buttonBack = document.querySelector('.button_back')
 
+        
     buttonBack.addEventListener('click', ()=>{
       console.log('click PREV')
       
       switch(currentWindow){
-        case 1:
-          buttonBack.style.backgroundColor = '#ccc';
-        break;
+
         case 2:
           currentWindow=1
           document.querySelector('.message_container').remove();
@@ -198,7 +197,7 @@ document.addEventListener('DOMContentLoaded',() => {
     })
 
   }
-
+  
 
 
 
